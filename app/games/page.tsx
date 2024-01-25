@@ -1,8 +1,10 @@
+import Link from 'next/link'
 import { connectDB } from '@/utils/database'
 // components
 import GameItem from '@/components/gameItem/GameItem'
+// type
 import { GameType } from '@/interface'
-import Link from 'next/link'
+
 
 
 export default async function GamesPage() {

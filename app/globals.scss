@@ -64,7 +64,7 @@ button {
     margin: 60px 0 80px;
     width: 100%;
 
-    &__header {
+    .page__header {
         font-weight: 800;
         padding: 10px 0;
         margin-bottom: 30px;
@@ -116,5 +116,69 @@ button {
     &__game-list {
         display: flex;
         flex-direction: column;
+    }
+}
+
+// detail-page 스타일
+.detail-page {
+
+    &__header-box {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    &__detail {
+        display: flex;
+        justify-content: space-between;
+
+        @include tablet {
+            flex-direction: column;
+        }
+
+        .detail__img-box {
+            margin-right: 5%;
+            padding-bottom: 40px;
+            box-sizing: border-box;
+
+            @include tablet {
+                width: 100%;
+                margin: 0;
+            }
+        }
+
+        .detail__info-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+            gap: 20px;
+
+            .detail__info {
+                background-color: $bgGray;
+                border-radius: 15px;
+                padding: 20px;
+
+                .header {
+                    font-size: $font2;
+                    font-weight: 600;
+                    margin-bottom: 10px;
+                }
+            }
+
+            .description {
+                flex-grow: 1;
+
+                .text {
+                    color : $fontDarkGray;
+                }
+            }
+
+            .releasedAt {
+
+                .text {
+                    color: $fontGray;
+                }
+            }
+        }
     }
 }

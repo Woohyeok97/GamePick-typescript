@@ -2,6 +2,7 @@ $bgColor : #ffffff;
 $bgGray : #f2f4f6;
 $fontColor : #191f28;
 $fontGray : #8b95a1;
+$fontDarkGray : #4e5968;
 $fontWhite : #f9fafb;
 $fontWarning : orangered;
 $fontWarning-hover : rgb(255, 98, 40);
@@ -35,17 +36,17 @@ $desktop: 1024px;
     }
 }
 // 패드
-@mixin tablet {
-    @media (min-width : $tablet) and (max-width : #{$desktop - 1px}) {
-        @content;
-    } 
-}
-// 패드
 // @mixin tablet {
-//     @media (max-width : #{$desktop - 1px}) {
+//     @media (min-width : $tablet) and (max-width : #{$desktop - 1px}) {
 //         @content;
 //     } 
 // }
+// 패드
+@mixin tablet {
+    @media (max-width : #{$desktop - 1px}) {
+        @content;
+    } 
+}
 
 // 데스크탑
 @mixin desktop {
