@@ -1,0 +1,52 @@
+$bgColor : #ffffff;
+$bgGray : #f2f4f6;
+$fontColor : #191f28;
+$fontGray : #8b95a1;
+$fontWhite : #f9fafb;
+$fontWarning : orangered;
+$fontWarning-hover : rgb(255, 98, 40);
+$btnColor : #3182f6;
+$btnColor-hover : #1b64da;
+$border : 1px solid #001b371a;
+
+
+// font-size
+$font1 : calc(16px + 2px);
+$font2 : calc(18px + 2px);
+$font3 : calc(20px + 2px);
+$font4 : calc(22px + 2px);
+$font5 : calc(24px + 2px);
+
+
+
+
+// 화면크기 최소기준
+$mobile: 380px;
+$tablet: 600px;
+$desktop: 1024px;
+
+// 미디어쿼리 사이즈 설정
+
+// 모바일
+@mixin mobile {
+    @media (max-width : #{$tablet - 1px}) {
+        @content;
+    }
+}
+// 패드
+@mixin tablet {
+    @media (min-width : $tablet) and (max-width : #{$desktop - 1px}) {
+        @content;
+    } 
+}
+
+// 데스크탑
+@mixin desktop {
+    @media (min-width : $desktop) {
+        @content;
+    }
+}
+
+@include mobile {
+    $bgColor : black;
+}

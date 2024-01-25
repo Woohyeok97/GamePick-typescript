@@ -1,0 +1,115 @@
+@import './utils';
+
+body {
+    background-color: $bgColor;
+    color: $fontColor;
+    font-size: $font1;
+    margin: 0;
+}
+
+h1,h2,h3 {
+    margin: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+textarea {
+    border: none;
+    resize: none;
+    outline: none;
+}
+input {
+    outline: none;
+    border: none;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+button {
+    border: none;
+    outline: none; 
+}
+
+
+
+// common
+
+.btn {
+    font-size: $font2;
+    font-weight: 600;
+    color: $fontWhite;
+    background-color: $btnColor;
+    padding: 15px 30px;
+    border-radius: 10px;
+    transition: all 0.2s ease-in;
+    
+    &:hover {
+        background-color: $btnColor-hover;
+    }
+}
+
+
+
+// page
+
+.page-container {
+    max-width: 1140px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.page {
+    margin: 60px 0 80px;
+
+    &__header {
+        font-weight: 800;
+        padding: 10px 0;
+        margin-bottom: 30px;
+    }
+}
+
+
+.form {
+
+    &__block {
+        display: flex;
+        flex-direction: column;
+        padding: 15px 15px 20px;
+        margin-bottom: 20px;
+        background-color: $bgGray;
+        border-radius: 10px;
+
+        input {
+            font-size: $font2;
+            padding: 10px;
+        }
+
+        textarea {
+            font-size: $font2;
+            padding: 10px;
+        }
+
+        .form__label {
+            color: $fontGray;
+            padding-bottom: 15px;
+        }
+        .form__label-warning {
+            color: $fontWarning;
+            padding-bottom: 15px;
+            transition: all 0.1s ease-in;
+        }
+    }
+
+    &__btn-area {
+        display: flex;
+        flex-direction: row-reverse;
+        margin-top: 40px;
+    }
+
+    
+    
+}
