@@ -36,8 +36,7 @@ button {
 
 
 
-// common
-
+// common 스타일
 .btn {
     font-size: $font2;
     font-weight: 600;
@@ -45,7 +44,7 @@ button {
     background-color: $btnColor;
     padding: 15px 30px;
     border-radius: 10px;
-    transition: all 0.2s ease-in;
+    transition: $defaultTransition;
     
     &:hover {
         background-color: $btnColor-hover;
@@ -54,8 +53,7 @@ button {
 
 
 
-// page
-
+// page 기본 스타일
 .page-container {
     max-width: 1140px;
     width: 90%;
@@ -64,6 +62,7 @@ button {
 
 .page {
     margin: 60px 0 80px;
+    width: 100%;
 
     &__header {
         font-weight: 800;
@@ -72,7 +71,7 @@ button {
     }
 }
 
-
+// form 기본 스타일
 .form {
 
     &__block {
@@ -109,7 +108,13 @@ button {
         flex-direction: row-reverse;
         margin-top: 40px;
     }
+}
 
-    
-    
+// game-page 스타일
+.games-page {
+
+    &__game-list {
+        display: flex;
+        flex-direction: column;
+    }
 }

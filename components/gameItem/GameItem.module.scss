@@ -1,3 +1,50 @@
+@import './utils';
+
 .gameItem {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 60px;
+    width: 100%;
+    
+
+    &:hover {
+        .infoBox__title {
+            color: $btnColor;
+        }
+    }
+
+    @include mobile {
+        flex-direction: column;
+    }
+
+    &__img {
+        margin-right: 5%;
+        border-radius: 15px;
+
+        @include mobile {
+            width: 100%;
+            margin: 0px;
+        }
+    }
+
+    &__infoBox {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+
+        .infoBox__title {
+            margin-bottom: 30px;
+            transition: $defaultTransition;
+            font-size: 3rem;
+        }
+        .infoBox__description {
+            margin-bottom: 20px;
+            font-size: $font2;
+        }
+        .infoBox__releasedAt {
+            margin-bottom: 20px;
+            color: $fontGray;
+        }
+    }
 }

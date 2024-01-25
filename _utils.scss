@@ -8,6 +8,7 @@ $fontWarning-hover : rgb(255, 98, 40);
 $btnColor : #3182f6;
 $btnColor-hover : #1b64da;
 $border : 1px solid #001b371a;
+$defaultTransition : all 0.2s ease-in;
 
 
 // font-size
@@ -21,7 +22,7 @@ $font5 : calc(24px + 2px);
 
 
 // 화면크기 최소기준
-$mobile: 380px;
+$mobile: 400px;
 $tablet: 600px;
 $desktop: 1024px;
 
@@ -39,6 +40,12 @@ $desktop: 1024px;
         @content;
     } 
 }
+// 패드
+// @mixin tablet {
+//     @media (max-width : #{$desktop - 1px}) {
+//         @content;
+//     } 
+// }
 
 // 데스크탑
 @mixin desktop {
