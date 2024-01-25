@@ -1,7 +1,10 @@
+'use client'
 import styles from './Navbar.module.scss'
 import Link from 'next/link'
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Navbar() {
+    const session = useSession()
 
     return (
         <nav className={ styles.navbar }>
@@ -15,20 +18,22 @@ export default function Navbar() {
                     <Link href="/games" style={{ fontWeight : 800, marginLeft : '20px' }}>
                         games
                     </Link>
-                    <Link href="/login" style={{ fontWeight : 800, marginLeft : '20px' }}>
-                        login
-                    </Link>
                     <Link href="/games/upload" style={{ fontWeight : 800, marginLeft : '20px' }}>
                         upload
                     </Link>
-                    <Link href="/games/*/edit" style={{ fontWeight : 800, marginLeft : '20px' }}>
-                        login
-                    </Link>
                 </div>
                 
-                <button className={ styles.navbar__btn }>
-                    로그인
-                </button> 
+                { session?.data ?
+                    <button className={ styles.navbar__btn } onClick={() => signOut()}>
+                        로그아웃
+                    </button>
+                    :
+                    <Link href="/login">
+                        <button className={ styles.navbar__btn }>
+                            로그인
+                        </button> 
+                    </Link>
+                }
             </div>
         </nav>
     )
