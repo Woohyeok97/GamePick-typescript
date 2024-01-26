@@ -1,9 +1,9 @@
 'use client'
 import axios from "axios"
 import { useForm } from "react-hook-form"
+import { useRouter } from "next/navigation"
 // type
 import { GameType } from "@/interface"
-import { useRouter } from "next/navigation"
 
 
 export default function GameUploadPage() {
@@ -11,11 +11,9 @@ export default function GameUploadPage() {
     const router = useRouter()
     // 게임 업로드
     const onSubmit = async (data : GameType) => {
-        const url = process?.env?.NEXT_PUBLIC_GAMES_API
-        if(!url) return
-
+   
         try {
-            const response = await axios.post(url, data)
+            const response = await axios.post(`${process?.env?.NEXT_PUBLIC_GAMES_API}`, data)
             console.log(response.data)
             alert('게임을 업로드 하였습니다.')
             // router.replace('/')

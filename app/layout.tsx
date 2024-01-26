@@ -7,6 +7,7 @@ import { Noto_Sans_KR } from 'next/font/google'
 import Navbar from "@/components/navbar/Navbar";
 // provider
 import { SessionProvider } from 'next-auth/react'
+import { QueryClient, QueryClientProvider} from '@tanstack/react-query'
 
 // font
 const notoSansKorean = Noto_Sans_KR({
@@ -19,17 +20,21 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children } : RootLayoutProps) {
+
+    const queryClient = new QueryClient() 
     
     return (
         <SessionProvider>
-            <html lang="ko">
-                <body className={ notoSansKorean.className }>
-                    <Navbar/>
-                    <div className="page-container">
-                        { children }
-                    </div>
-                </body>
-            </html>
+            <QueryClientProvider client={ queryClient }>
+                <html lang="ko">
+                    <body className={ notoSansKorean.className }>
+                        <Navbar/>
+                        <div className="page-container">
+                            { children }
+                        </div>
+                    </body>
+                </html>
+            </QueryClientProvider>
         </SessionProvider>
       )
 }
