@@ -1,11 +1,12 @@
 'use client'
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/navigation"
-import { useQuery, useMutation, QueryClient } from '@tanstack/react-query'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from "axios"
 // type
 import { GameType } from "@/interface"
 import { useEffect } from "react"
+import { useSession } from "next-auth/react"
 
 
 interface GameEditPageProps {
@@ -14,8 +15,11 @@ interface GameEditPageProps {
 
 export default function GameEditPage({ params } : GameEditPageProps) {
     const { register, handleSubmit, formState : { errors }, setValue } = useForm<GameType>()
-    const queryClient = new QueryClient()
+    const queryClient = useQueryClient()
     const router = useRouter()
+    const session = useSession()
+
+    
 
     // game fetch
     const gameFetch = async () => {

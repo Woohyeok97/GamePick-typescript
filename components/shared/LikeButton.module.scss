@@ -1,0 +1,23 @@
+@import './utils';
+
+.likeButton {
+    font-size: $font4;
+    cursor: pointer;
+    
+    &__btn {
+        color: $fontGray;
+        transition: $defaultTransition;
+
+        &:hover {
+            font-weight: 800;
+        }
+    }
+    &__btnActive {
+        color: $fontWarning;
+        transition: $defaultTransition;
+
+        &:hover {
+            font-weight: 800;
+        }
+    }
+}

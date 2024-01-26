@@ -2,21 +2,29 @@ import { connectDB } from "@/utils/database";
 import { ObjectId } from "mongodb";
 // components
 import TrailerImage from "@/components/trailerImage/TrailerImage";
+import LikeButton from "@/components/shared/LikeButton";
+
 
 interface GameDetailPageProps {
     params : { id : string }
 }
 
+
 export default async function GameDetailPage({ params } : GameDetailPageProps) {
     const db = (await connectDB).db('game-pick')
     const game = await db.collection('games').findOne({ _id : new ObjectId(params?.id) })
+
     
     return (
         <div className="page detail-page">
             <div className="page__header">
                 <div className="detail-page__header-box">
                     <h2>{ game?.title }</h2>
-                    <button>하트</button>
+                    <div>
+                        { params?.id === game?._id.toString() &&
+                            <LikeButton gameId={ game?._id.toString() }/>
+                        }  
+                    </div>
                 </div>
             </div>
 

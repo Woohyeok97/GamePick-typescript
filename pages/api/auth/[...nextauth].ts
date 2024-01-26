@@ -28,7 +28,7 @@ export const authOptions : NextAuthOptions = {
 
     // session 설정
     session : {
-        strategy : 'jwt',
+        strategy : 'jwt' as const,
         maxAge: 60 * 60 * 24,
         updateAge: 60 * 60 * 2,
     },  
@@ -43,7 +43,7 @@ export const authOptions : NextAuthOptions = {
             user : {
                 ...session.user,
                 id : token.sub,
-            } 
+            },
         }),
         // 로그인시 jwt(token)이 만들어지고 token에 소셜플랫폼에서 받은 user.id를 넣음
         jwt : async ({ user, token }) => {
