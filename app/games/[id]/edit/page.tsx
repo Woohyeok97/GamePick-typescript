@@ -32,7 +32,7 @@ export default function GameEditPage({ params } : GameEditPageProps) {
         queryKey : [`game_${params.id}`],
         queryFn : gameFetch,
         enabled : !!params.id,
-        staleTime : 30000,
+        staleTime : 3000,
         refetchOnWindowFocus : false,
     })
 

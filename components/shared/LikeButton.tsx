@@ -3,6 +3,7 @@ import styles from './LikeButton.module.scss'
 import { useSession } from 'next-auth/react'
 import axios from 'axios'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
 
 interface LikeButtonProps {
     gameId : string,
@@ -10,6 +11,7 @@ interface LikeButtonProps {
 export default function LikeButton({ gameId } : LikeButtonProps) {
     const session = useSession()
     const queryClient = useQueryClient()
+    const router = useRouter()
 
     // like fetch
     const fetchIsLike = async () => {
@@ -36,8 +38,11 @@ export default function LikeButton({ gameId } : LikeButtonProps) {
         try {
             await axios.post(`${process.env.NEXT_PUBLIC_LIKES_API}`, { gameId })
             queryClient.invalidateQueries({ queryKey : [`isLike`, `${gameId}`]})
+
         } catch(err) {
             console.log(err)
+        } finally {
+            router.refresh() // 클라이언트 컴포넌트에서 router.refresh()를 사용해서 현재경로를 새로고치고, 서버컴포넌트의 fetch를 재실행함
         }
     }
 
@@ -53,6 +58,8 @@ export default function LikeButton({ gameId } : LikeButtonProps) {
             queryClient.invalidateQueries({ queryKey : [`isLike`, `${gameId}`]})
         } catch(err) {
             console.log(err)
+        } finally {
+            router.refresh()
         }
     }
 

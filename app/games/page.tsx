@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { connectDB } from '@/utils/database'
 // components
-import GameItem from '@/components/gameItem/GameItem'
+import GameItem from '@/components/shared/GameItem'
 // type
 import { GameType } from '@/interface'
 
@@ -19,7 +19,7 @@ export default async function GamesPage() {
 
             <ul className="games-page__game-list">
             { data?.map((item, i) => 
-                <li key={i}>
+                <li key={`${item?._id}`}>
                     <Link href={`/games/${item?._id}`}>
                         <GameItem game={ item as GameType }/>
                     </Link>

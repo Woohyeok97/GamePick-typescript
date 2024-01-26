@@ -21,6 +21,9 @@ export default function Navbar() {
                     <Link href="/games/upload" style={{ fontWeight : 800, marginLeft : '20px' }}>
                         upload
                     </Link>
+                    <Link href="/mypage" style={{ fontWeight : 800, marginLeft : '20px' }}>
+                        myPage
+                    </Link>
                 </div>
                 
                 { session?.data ?

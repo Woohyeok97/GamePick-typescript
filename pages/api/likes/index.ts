@@ -11,6 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const session = await getServerSession(req, res, authOptions)
     const db = (await connectDB).db('game-pick')
 
+    
     // GET
     if(req.method === 'GET') {
         if(!session) return res.status(401).json('로그인 정보를 확인해주세요.')

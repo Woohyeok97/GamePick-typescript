@@ -16,6 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // GET
     if(req.method === 'GET') {
         try {
+            
             const result = await db.collection('games').find().toArray() as GameType[]
             return res.status(200).json(result)
         } catch(err) {
