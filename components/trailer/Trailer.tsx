@@ -25,12 +25,15 @@ export default function Trailer({ videoId } : TrailerProps) {
 
     return (
         <div className={ styles.trailer }>
-            <YouTube 
-                videoId={ videoId } 
-                opts={opts} 
-                onReady={onReady}
-                className={ styles.trailer__youtube }
-            />
+            <div className={ styles.trailer__header }>어떤 게임 트레일러</div>
+            <div className={ styles.trailer__inner }>
+                <YouTube 
+                    videoId={ videoId } 
+                    opts={opts} 
+                    onReady={onReady}
+                    className={ styles.trailer__youtube }
+                />
+            </div>
         </div>
     )
 }

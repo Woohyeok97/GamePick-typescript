@@ -20,7 +20,6 @@ export default function GameEditPage({ params } : GameEditPageProps) {
     const session = useSession()
 
     
-
     // game fetch
     const gameFetch = async () => {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_GAMES_API}/${params?.id}`)
@@ -53,7 +52,7 @@ export default function GameEditPage({ params } : GameEditPageProps) {
             const response = await axios.put(`${process.env.NEXT_PUBLIC_GAMES_API}/${params?.id}`, data)
             return response.data
         },
-        onSuccess : (data) => {
+        onSuccess : () => {
             queryClient.invalidateQueries({ queryKey : [`game_${params?.id}`] })
             alert('게임을 수정하였습니다.')
         },

@@ -8,3 +8,5 @@ export interface GameType {
     image? : string,
     description : string,
 }
+
+export type OverlayContentType = (isOpen: boolean, close: () => void) => JSX.Element;
