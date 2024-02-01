@@ -1,12 +1,16 @@
 'use client'
+import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/navigation"
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from "axios"
+// hooks
+import useOverlay from "@/hooks/useOverlay"
 // type
 import { GameType } from "@/interface"
-import { useEffect } from "react"
-import { useSession } from "next-auth/react"
+import FullOverlayWrap from "@/components/overlayWraps/FullOverlayWrap"
+import GameUploadPreview from "@/components/shared/GameUploadPreview"
+import GameItem from "@/components/shared/GameItem"
 
 
 interface GameEditPageProps {
@@ -16,13 +20,16 @@ interface GameEditPageProps {
 export default function GameEditPage({ params } : GameEditPageProps) {
     const { register, handleSubmit, formState : { errors }, setValue } = useForm<GameType>()
     const queryClient = useQueryClient()
+    const overlay = useOverlay()
     const router = useRouter()
-    const session = useSession()
+
 
     
     // game fetch
     const gameFetch = async () => {
+        
         const response = await axios.get(`${process.env.NEXT_PUBLIC_GAMES_API}/${params?.id}`)
+        // zod 써볼까?(response타입처리)
         return response.data as GameType
     }
 
@@ -55,6 +62,7 @@ export default function GameEditPage({ params } : GameEditPageProps) {
         onSuccess : () => {
             queryClient.invalidateQueries({ queryKey : [`game_${params?.id}`] })
             alert('게임을 수정하였습니다.')
+            router.replace('/games')
         },
         onError : (error) => {
             console.log(error)
@@ -64,6 +72,17 @@ export default function GameEditPage({ params } : GameEditPageProps) {
     // 게임 수정
     const onEditSubmit = async (data : GameType) => {
         mutation.mutate(data)
+    }
+
+    const openOverlay = (data : GameType) => {
+
+        overlay.open((isOpen, close) => 
+            <FullOverlayWrap isOpen={isOpen} close={close}>
+                <GameUploadPreview onSubmit={() => onEditSubmit(data)}>
+                    <GameItem game={data}/>
+                </GameUploadPreview>
+            </FullOverlayWrap>
+        )
     }
 
     // 게임 삭제
@@ -88,7 +107,7 @@ export default function GameEditPage({ params } : GameEditPageProps) {
                 <h2>게임 수정</h2>
             </div>
             
-            <form className="form" onSubmit={ handleSubmit(onEditSubmit) }>
+            <form className="form" onSubmit={ handleSubmit(openOverlay) }>
                 <div className="form__block">
                     <label htmlFor="title" className={`${errors?.title?.type == 'required' ? 'form__label-warning' : 'form__label' }`}>
                         타이틀을 입력해주세요.

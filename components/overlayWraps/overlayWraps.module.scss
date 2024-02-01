@@ -44,23 +44,24 @@
         margin: 0 auto;
         max-width: 1140px;
         max-height: 860px;
-        padding-top: 20px;
+        padding: 20px 0;
         box-sizing: border-box;
         border: $border;
         border-radius: 15px;
         background-color: $bgColor;
         box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 설정 */
 
-        @include tablet {
-            height: 80%;
-        }
-        @include mobile {
-            height: 70%;
-        }
+        // @include tablet {
+        //     height: 80%;
+        // }
+        // @include mobile {
+        //     height: 70%;
+        // }
     }
 
     &__content {
         width: 90%;
+        height: 100%;
         margin: 0 auto;
         position: relative;
     }

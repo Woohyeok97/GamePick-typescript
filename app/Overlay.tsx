@@ -14,9 +14,8 @@ export default function Overlay () {
 
     return (
         <>
-        { isOpen && overlayContent && 
-            <div>{ overlayContent(isOpen, close) }</div> }
-        </>
+        { isOpen && overlayContent && overlayContent(isOpen, close) }
+        </> 
         
     )
 }

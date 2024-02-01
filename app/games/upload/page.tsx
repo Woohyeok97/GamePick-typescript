@@ -2,26 +2,46 @@
 import axios from "axios"
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/navigation"
+// components
+import FullOverlayWrap from "@/components/overlayWraps/FullOverlayWrap"
+// hooks
+import useOverlay from "@/hooks/useOverlay"
 // type
 import { GameType } from "@/interface"
+import GameItem from "@/components/shared/GameItem"
+import { ReactNode } from "react"
+import GameUploadPreview from "@/components/shared/GameUploadPreview"
+
 
 
 export default function GameUploadPage() {
     const { register, handleSubmit, formState : { errors } } = useForm<GameType>()
+    const overlay = useOverlay()
     const router = useRouter()
+    
     // 게임 업로드
     const onSubmit = async (data : GameType) => {
-   
         try {
             const response = await axios.post(`${process?.env?.NEXT_PUBLIC_GAMES_API}`, data)
-            console.log(response.data)
             alert('게임을 업로드 하였습니다.')
-            // router.replace('/')
+            router.replace('/games')
         } catch(err) {
             console.log(err)
             alert(err)
         }
     }
+
+    const opneOverlay = (data : GameType) => {
+
+        overlay.open((isOpen, close) => (
+            <FullOverlayWrap isOpen={isOpen} close={close}>
+                <GameUploadPreview onSubmit={()=>{ onSubmit(data) }}>
+                    <GameItem game={data}/>
+                </GameUploadPreview>
+            </FullOverlayWrap>
+        ))
+    }
+
 
     return (
         <div className="page">
@@ -29,7 +49,7 @@ export default function GameUploadPage() {
                 <h2>게임 업로드</h2>
             </div>
             
-            <form className="form" onSubmit={ handleSubmit(onSubmit) }>
+            <form className="form" onSubmit={ handleSubmit(opneOverlay) }>
                 <div className="form__block">
                     <label htmlFor="title" className={`${errors?.title?.type == 'required' ? 'form__label-warning' : 'form__label' }`}>
                         타이틀을 입력해주세요.
@@ -71,9 +91,16 @@ export default function GameUploadPage() {
                 </div>
 
                 <div className="form__btn-area">
-                    <button type="submit" className="btn">
-                        업로드
-                    </button>
+                    {/* <button className="btn" onClick={() => {
+                        overlay.open((isOpen, close) => (
+                            <FullOverlayWrap isOpen={isOpen} close={close}>
+                                
+                            </FullOverlayWrap>
+                        ))
+                    }}>
+                        미리보기
+                    </button> */}
+                    <button type="submit" className="btn">미리보기</button>
                 </div>
             </form>
         </div>

@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 60px;
+    margin-bottom: 60px;
     width: 100%;
     transition: $defaultTransition;
 
@@ -38,6 +38,11 @@
             margin-bottom: 30px;
             transition: $defaultTransition;
             font-size: 3rem;
+
+            @include mobile {
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
         }
         .infoBox__description {
             margin-bottom: 20px;
