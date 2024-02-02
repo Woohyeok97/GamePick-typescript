@@ -10,10 +10,15 @@ interface GameUploadPreviewProps {
 }
 
 export default function GameUploadPreview({ children, onSubmit, objectURL } : GameUploadPreviewProps ) {
-
-    // 언마운트시, object url 제거 (메모리 누수)
+    
+    
     useEffect(() => {
-        return () => URL.revokeObjectURL(objectURL)
+
+        // 언마운트시, object url 제거 (메모리 누수)
+        return () => {
+            // objectURL인 경우에만 실행
+            if(objectURL.startsWith('blob:')) URL.revokeObjectURL(objectURL)
+        }
     }, [objectURL])
 
     return (

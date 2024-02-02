@@ -13,12 +13,12 @@ import { GameType } from "@/interface"
 
 
 export default function GameUploadPage() {
-    const { register, handleSubmit, formState : { errors } } = useForm<GameType>()
+    const { register, handleSubmit, formState : { errors } } = useForm()
     const overlay = useOverlay()
     const router = useRouter()
     
     // 게임 업로드
-    const onSubmit = async (data : GameType) => {
+    const onSubmit = async (data : any) => {
         try {
             const imageURL = await uploadImage(data.image[0])
             const formData = { ...data, image : imageURL }
@@ -35,14 +35,13 @@ export default function GameUploadPage() {
 
 
     // preview 열기
-    const openUploadPreview = (data : GameType) => {
+    const openUploadPreview = (data : any) => {
         const objectURL = URL.createObjectURL(data.image[0] as File)
-        const previewData = { ...data, image : objectURL }
 
         overlay.open((isOpen, close) => (
             <FullOverlayWrap isOpen={isOpen} close={close}>
                 <GameUploadPreview onSubmit={() => onSubmit(data)} objectURL={objectURL}>
-                    <GameItem game={previewData}/>
+                    <GameItem game={{ ...data, image : objectURL }}/>
                 </GameUploadPreview>
             </FullOverlayWrap>
         ))

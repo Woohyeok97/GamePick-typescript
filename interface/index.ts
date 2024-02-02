@@ -5,7 +5,7 @@ export interface GameType {
     title : string,
     releasedAt : string,
     trailerUrl : string,
-    image? : any,
+    image : string,
     description : string,
 }
 
