@@ -3,6 +3,8 @@ import { ObjectId } from "mongodb";
 // components
 import TrailerImage from "@/components/trailerImage/TrailerImage";
 import LikeButton from "@/components/shared/LikeButton";
+// type
+import { GameType } from "@/interface";
 
 
 interface GameDetailPageProps {
@@ -29,7 +31,7 @@ export default async function GameDetailPage({ params } : GameDetailPageProps) {
             </div>
             <div className="detail-page__detail">
                 <div className="detail__img-box">
-                    <TrailerImage/>
+                    <TrailerImage game={ game as GameType}/>
                 </div>
 
                 <div className="detail__info-box">

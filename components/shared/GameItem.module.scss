@@ -47,6 +47,12 @@
         .infoBox__description {
             margin-bottom: 20px;
             font-size: $font2;
+            
+
+            @include mobile {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
         }
         .infoBox__releasedAt {
             margin-bottom: 20px;

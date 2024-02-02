@@ -11,7 +11,7 @@ import { GameType } from '@/interface'
 
 
 interface TrailerImageProps {
-    game? : GameType,
+    game : GameType,
 }
 
 export default function TrailerImage({ game } : TrailerImageProps) {
@@ -21,15 +21,14 @@ export default function TrailerImage({ game } : TrailerImageProps) {
         // 함수의 액션 & 액션의 중요내용 
         overlay.open((isOpen, close) => ( 
             <FullOverlayWrap isOpen={isOpen} close={close}> 
-                <Trailer videoId='GjWMRuYcdgc'/>
+                <Trailer videoId={ game?.trailerUrl } />
             </FullOverlayWrap> 
         ))
     }
 
-
     return (
         <div className={ styles.trailerImage }>
-            <Image src="/게임사진.jpeg" fill alt="game img" className={ styles.trailerImage__img }/>
+            <Image src={ game?.image } fill alt="img" className={ styles.trailerImage__img }/>
 
             <div className={ styles.trailerImage__blur } onClick={ handleTrailerOverlayOpen }>
                 <p>트레일러 시청하기</p>

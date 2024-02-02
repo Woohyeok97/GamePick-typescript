@@ -2,6 +2,7 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import { connectDB } from "@/utils/database"
 import { ObjectId } from "mongodb"
 import { getServerSession } from "next-auth"
+import Link from 'next/link'
 // components
 import GameItem from "@/components/shared/GameItem"
 // type
@@ -31,10 +32,14 @@ export default async function MyPage() {
             <ul className="">
             { myGames?.map((item, i) => 
                 <li key={`${item?._id}`}>
-                    <GameItem game={item}/>
-                    <div className="like__inner">
-                        <LikeButton gameId={`${item?._id}`}/>
-                    </div>
+                    <Link href={`/games/${item?._id}`}>
+                    <>
+                        <GameItem game={item}/>
+                        <div className="like__inner">
+                            <LikeButton gameId={`${item?._id}`}/>
+                        </div>
+                    </>
+                    </Link>
                 </li>
             ) }
             </ul>
