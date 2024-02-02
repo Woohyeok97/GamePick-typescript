@@ -27,7 +27,6 @@ export default async function GameDetailPage({ params } : GameDetailPageProps) {
                     </div>
                 </div>
             </div>
-
             <div className="detail-page__detail">
                 <div className="detail__img-box">
                     <TrailerImage/>

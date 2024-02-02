@@ -4,14 +4,12 @@ import { useForm } from "react-hook-form"
 import { useRouter } from "next/navigation"
 // components
 import FullOverlayWrap from "@/components/overlayWraps/FullOverlayWrap"
+import GameItem from "@/components/shared/GameItem"
+import GameUploadPreview from "@/components/shared/GameUploadPreview"
 // hooks
 import useOverlay from "@/hooks/useOverlay"
 // type
 import { GameType } from "@/interface"
-import GameItem from "@/components/shared/GameItem"
-import { ReactNode } from "react"
-import GameUploadPreview from "@/components/shared/GameUploadPreview"
-
 
 
 export default function GameUploadPage() {
@@ -22,26 +20,58 @@ export default function GameUploadPage() {
     // 게임 업로드
     const onSubmit = async (data : GameType) => {
         try {
-            const response = await axios.post(`${process?.env?.NEXT_PUBLIC_GAMES_API}`, data)
+            const imageURL = await uploadImage(data.image[0])
+            const formData = { ...data, image : imageURL }
+
+            await axios.post(`${process?.env?.NEXT_PUBLIC_GAMES_API}`, formData)
             alert('게임을 업로드 하였습니다.')
             router.replace('/games')
+
         } catch(err) {
             console.log(err)
             alert(err)
         }
     }
 
-    const opneOverlay = (data : GameType) => {
+
+    // preview 열기
+    const openUploadPreview = (data : GameType) => {
+        const objectURL = URL.createObjectURL(data.image[0] as File)
+        const previewData = { ...data, image : objectURL }
 
         overlay.open((isOpen, close) => (
             <FullOverlayWrap isOpen={isOpen} close={close}>
-                <GameUploadPreview onSubmit={()=>{ onSubmit(data) }}>
-                    <GameItem game={data}/>
+                <GameUploadPreview onSubmit={() => onSubmit(data)} objectURL={objectURL}>
+                    <GameItem game={previewData}/>
                 </GameUploadPreview>
             </FullOverlayWrap>
         ))
     }
 
+
+    async function uploadImage(file : File) {
+        const fileName = encodeURIComponent(file?.name)
+
+        try {
+            // 서버로부터 presignedURL 받아오기
+            const { data } = await axios.get(`${process.env.NEXT_PUBLIC_AWS_S3_API}` + `/${fileName}`)
+            
+            // req.body 작업처리
+            const formData = new FormData()
+            Object.entries({ ...data.fields, file }).forEach(([key, value]) => {
+                formData.append(key, value as string)
+            })
+
+            // s3 이미지 업로드 / URL반환
+            const imageURL = await axios.post(data.url, formData)
+            return `${imageURL.config.url}/${fileName}`
+
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
+    
 
     return (
         <div className="page">
@@ -49,7 +79,7 @@ export default function GameUploadPage() {
                 <h2>게임 업로드</h2>
             </div>
             
-            <form className="form" onSubmit={ handleSubmit(opneOverlay) }>
+            <form className="form" onSubmit={ handleSubmit(openUploadPreview) }>
                 <div className="form__block">
                     <label htmlFor="title" className={`${errors?.title?.type == 'required' ? 'form__label-warning' : 'form__label' }`}>
                         타이틀을 입력해주세요.
@@ -78,8 +108,9 @@ export default function GameUploadPage() {
                     <label htmlFor="image" className={`${errors?.image?.type == 'required' ? 'form__label-warning' : 'form__label' }`}>
                         게임 이미지를 선택해주세요.
                     </label>
-                    <input type="file" id="image"
-                    { ...register('image') }/>
+                    <input 
+                        type="file" id="image"
+                        { ...register('image', { required : true }) }/>
                 </div>
 
                 <div className="form__block">
@@ -91,15 +122,6 @@ export default function GameUploadPage() {
                 </div>
 
                 <div className="form__btn-area">
-                    {/* <button className="btn" onClick={() => {
-                        overlay.open((isOpen, close) => (
-                            <FullOverlayWrap isOpen={isOpen} close={close}>
-                                
-                            </FullOverlayWrap>
-                        ))
-                    }}>
-                        미리보기
-                    </button> */}
                     <button type="submit" className="btn">미리보기</button>
                 </div>
             </form>

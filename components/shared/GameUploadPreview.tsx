@@ -1,14 +1,20 @@
 'use client'
 import styles from './GameUploadPreview.module.scss'
-import { ReactNode } from "react"
+import { ReactNode, useEffect } from "react"
 
 
 interface GameUploadPreviewProps {
     children : ReactNode,
-     onSubmit : () => void
+    onSubmit : () => void,
+    objectURL : string,
 }
 
-export default function GameUploadPreview({ children, onSubmit } : GameUploadPreviewProps ) {
+export default function GameUploadPreview({ children, onSubmit, objectURL } : GameUploadPreviewProps ) {
+
+    // 언마운트시, object url 제거 (메모리 누수)
+    useEffect(() => {
+        return () => URL.revokeObjectURL(objectURL)
+    }, [objectURL])
 
     return (
         <div className={ styles.gameUploadPreview }>
