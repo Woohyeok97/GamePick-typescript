@@ -14,6 +14,7 @@ export default async function HomePage() {
     const db = (await connectDB).db('game-pick')
     const data = await db.collection('games').find().toArray()
     const session = await getServerSession()
+    
 
     return (
         <div className="page games-page">
@@ -30,9 +31,9 @@ export default async function HomePage() {
             </div>
 
             <ul className="games-page__game-list">
-            { data?.map((item, i) => 
+            { data?.map((item, _) => 
                 <li key={`${item?._id}`}>
-                    <Link href={`/games/${item?._id}`}>
+                    <Link href={`/${item?._id}`}>
                         <GameItem game={ item as GameType }/>
                     </Link>
                 </li>

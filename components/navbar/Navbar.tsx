@@ -15,14 +15,8 @@ export default function Navbar() {
 
                 <div>
                     임시 : 
-                    <Link href="/games" style={{ fontWeight : 800, marginLeft : '20px' }}>
-                        games
-                    </Link>
-                    <Link href="/games/upload" style={{ fontWeight : 800, marginLeft : '20px' }}>
+                    <Link href="/upload" style={{ fontWeight : 800, marginLeft : '20px' }}>
                         upload
-                    </Link>
-                    <Link href="/mypage" style={{ fontWeight : 800, marginLeft : '20px' }}>
-                        myPage
                     </Link>
                 </div>
                 

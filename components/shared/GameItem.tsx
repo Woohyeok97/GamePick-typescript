@@ -8,6 +8,7 @@ interface GameItemProps {
     game : GameType,
 }
 export default function GameItem({ game } : GameItemProps) {
+
     
     return (
         <div className={ styles.gameItem }>

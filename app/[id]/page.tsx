@@ -11,8 +11,7 @@ interface GameDetailPageProps {
     params : { id : string }
 }
 
-
-export default async function GameDetailPage({ params } : GameDetailPageProps) {
+export default async function GamePage({ params } : GameDetailPageProps) {
     const db = (await connectDB).db('game-pick')
     const game = await db.collection('games').findOne({ _id : new ObjectId(params?.id) })
 
@@ -52,4 +51,3 @@ export default async function GameDetailPage({ params } : GameDetailPageProps) {
         </div>
     )
 }
-
