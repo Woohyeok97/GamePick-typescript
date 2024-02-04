@@ -32,36 +32,52 @@
         display: flex;
         flex-direction: column;
         flex-grow: 1;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
         
 
-        .infoBox__title {
-            margin-bottom: 30px;
-            transition: $defaultTransition;
-            font-size: 3rem;
-
-            @include mobile {
-                font-size: 2rem;
-                margin-bottom: 20px;
-            }
-        }
-        .infoBox__description {
+        @include mobile {
             margin-bottom: 20px;
-            font-size: $font2;
-            
-
-            @include mobile {
-                font-size: 1rem;
-                margin-bottom: 20px;
-            }
-        }
-        .infoBox__releasedAt {
-            margin-bottom: 20px;
-            color: $fontGray;
         }
     }
 
-    &__likeArea {
-        position: absolute;
-        top: 0;
+    &__title {
+        font-size: 3rem;
+        transition: $defaultTransition;
+
+        @include mobile {
+            font-size: 2rem;
+        }
+    }
+
+    &__like {
+        font-size: 2rem;
+
+        &.likeActive {
+            transition: $defaultTransition;
+            color: $fontWarning;
+        }
+        &.liekInactive {
+            color: $fontGray;
+        }
+    }
+    
+    &__description {
+        margin-bottom: 20px;
+        font-size: $font2;
+        
+        @include mobile {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+    }
+    &__releasedAt {
+        margin-bottom: 20px;
+        color: $fontGray;
     }
 }

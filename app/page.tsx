@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { connectDB } from '@/utils/database'
 import { getServerSession } from 'next-auth'
+import { authOptions } from '@/pages/api/auth/[...nextauth]'
 // components
 import GameItem from '@/components/shared/GameItem'
 import UserProfile from '@/components/shared/UserProfile'
@@ -9,11 +10,10 @@ import GuestProfile from '@/components/shared/GuestProfile'
 import { GameType } from '@/interface'
 
 
-
 export default async function HomePage() {
     const db = (await connectDB).db('game-pick')
     const data = await db.collection('games').find().toArray()
-    const session = await getServerSession()
+    const session = await getServerSession(authOptions)
     
 
     return (
