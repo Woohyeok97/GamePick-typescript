@@ -41,7 +41,8 @@ export default function GameUploadPage() {
         overlay.open((isOpen, close) => (
             <FullOverlayWrap isOpen={isOpen} close={close}>
                 <GameUploadPreview onSubmit={() => onSubmit(data)} objectURL={objectURL}>
-                    <GameItem game={{ ...data, image : objectURL }}/>
+                    {/* <GameItem game={{ ...data, image : objectURL }}/> */}
+                    <div>임시</div>
                 </GameUploadPreview>
             </FullOverlayWrap>
         ))

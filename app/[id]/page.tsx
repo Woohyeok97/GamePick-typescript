@@ -15,6 +15,7 @@ export default async function GamePage({ params } : GameDetailPageProps) {
     const db = (await connectDB).db('game-pick')
     const game = await db.collection('games').findOne({ _id : new ObjectId(params?.id) })
 
+    console.log(`나는 게임페이지 렌더링됨! : ${game?.title}`)
     
     return (
         <div className="page detail-page">
@@ -22,9 +23,12 @@ export default async function GamePage({ params } : GameDetailPageProps) {
                 <div className="detail-page__header-box">
                     <h2>{ game?.title }</h2>
                     <div>
-                        { params?.id === game?._id.toString() &&
+                        {/* { params?.id === game?._id.toString() &&
                             <LikeButton gameId={ game?._id.toString() }/>
-                        }  
+                        }   */}
+                        { game?._id.toString() &&
+                            <LikeButton gameId={ game?._id.toString() }/>
+                        }
                     </div>
                 </div>
             </div>

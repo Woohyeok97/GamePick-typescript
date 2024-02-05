@@ -23,6 +23,7 @@
                 "components/*" : ["components/*"],
                 "pages/*" : ["pages/*"],
                 "hooks/*" : ["hooks/*"],
+                "utils/*" : ["utils/*"],
             }
         },
         "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "global.d.ts"],

@@ -66,7 +66,7 @@ export default function GameEditPage({ params } : GameEditPageProps) {
         onSuccess : () => {
             queryClient.invalidateQueries({ queryKey : [`game_${params?.id}`] })
             alert('게임을 수정하였습니다.')
-            router.replace('/games')
+            router.replace('/')
         },
         onError : (error) => {
             console.log(error)
@@ -95,7 +95,8 @@ export default function GameEditPage({ params } : GameEditPageProps) {
         overlay.open((isOpen, close) => (
             <FullOverlayWrap isOpen={isOpen} close={close}>
                 <GameUploadPreview onSubmit={() => onEditSubmit(data)} objectURL={imageURL}>
-                    <GameItem game={{ ...data, image : imageURL }}/>
+                    {/* <GameItem game={{ ...data, image : imageURL }}/> */}
+                    <div>임시</div>
                 </GameUploadPreview>
             </FullOverlayWrap>
         ))

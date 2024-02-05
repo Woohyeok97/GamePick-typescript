@@ -15,8 +15,7 @@ export default function LikeButton({ gameId } : LikeButtonProps) {
 
     // like fetch
     const fetchIsLike = async () => {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_LIKES_API}`, { params : { gameId} })
-        console.log('fetxh')
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_LIKES_API}/?gameId=${gameId}`)
         return response.data
     }
 
@@ -42,7 +41,7 @@ export default function LikeButton({ gameId } : LikeButtonProps) {
         } catch(err) {
             console.log(err)
         } finally {
-            router.refresh() // 클라이언트 컴포넌트에서 router.refresh()를 사용해서 현재경로를 새로고치고, 서버컴포넌트의 fetch를 재실행함
+            // router.refresh() // 클라이언트 컴포넌트에서 router.refresh()를 사용해서 현재경로를 새로고치고, 서버컴포넌트의 fetch를 재실행함
         }
     }
 
@@ -59,7 +58,7 @@ export default function LikeButton({ gameId } : LikeButtonProps) {
         } catch(err) {
             console.log(err)
         } finally {
-            router.refresh()
+            // router.refresh()
         }
     }
 

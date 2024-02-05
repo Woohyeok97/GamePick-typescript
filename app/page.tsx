@@ -10,12 +10,18 @@ import GuestProfile from '@/components/shared/GuestProfile'
 import { GameType } from '@/interface'
 
 
-export default async function HomePage() {
+async function getGameList() {
     const db = (await connectDB).db('game-pick')
     const data = await db.collection('games').find().toArray()
-    const session = await getServerSession(authOptions)
-    
+    console.log('게임리스트 요청 실행됨')
+    return data
+}
 
+export default async function HomePage() {
+    const session = await getServerSession(authOptions)
+    const data = await getGameList()
+    
+    console.log('홈 렌더링됨!')
     return (
         <div className="page games-page">
             <div className=''>
@@ -27,6 +33,7 @@ export default async function HomePage() {
             </div>
 
             <div className="page__header">
+                
                 <h2>게임목록</h2>
             </div>
 
