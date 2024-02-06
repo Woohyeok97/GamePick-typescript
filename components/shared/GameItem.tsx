@@ -1,41 +1,32 @@
-'use client'
-
-import Image from 'next/image'
 import styles from './GameItem.module.scss'
-// type
-import { GameType } from '@/interface'
-import { useSession } from 'next-auth/react'
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
+import Image from 'next/image'
+import { connectDB } from '@/utils/database'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/pages/api/auth/[...nextauth]'
+// component
 
+// type
+import { GameType, LikeType } from '@/interface'
+import LikeButton from './LikeButton'
+
+
+
+async function getUserLike(gameId : string, email : string) {
+    if(!email) return null
+    const db = (await connectDB).db('game-pick')
+    const response = await db.collection('likes').findOne({ gameId : gameId, userEmail : email })
+
+    return response
+}
 
 interface GameItemProps {
     game : GameType,
 }
 
-export default function GameItem({ game } : GameItemProps) {
-    const session = useSession()
+export default async function GameItem({ game } : GameItemProps) {
+    const session = await getServerSession(authOptions)
+    const userLike = await getUserLike(`${game?._id}`, session?.user?.email as string)
 
-    const getUserLike = async () => {
-
-        // const delayMs = 3000;
-        // await new Promise(resolve => setTimeout(resolve, delayMs));
-
-        // 지연 후 API 요청을 수행합니다.
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_LIKES_API}/?gameId=${game?._id}`);
-        return response.data;
-    }
-
-    const { data : like, isFetched } = useQuery({
-        queryKey : [`isLike`, `${game?._id}`],
-        queryFn : getUserLike,
-        enabled : !!session.data,
-        staleTime : Infinity,
-        refetchOnWindowFocus : false,
-    })
-
-    const likeClass = `${ styles.gameItem__like } ${like ? styles.likeActive : styles.likeInactive}`
-    
     return (
         <div className={ styles.gameItem }>
             <Image src={ game?.image } width={300} height={250} alt='n' className={ styles.gameItem__img }/>
@@ -45,9 +36,8 @@ export default function GameItem({ game } : GameItemProps) {
                     <h1 className={ styles.gameItem__title }>
                         { game?.title } 
                     </h1>
-                    <div className={ likeClass }>
-                    { isFetched ? '하트' : <h3>Loading..</h3> }
-                    </div>
+
+                    <LikeButton userLike={ userLike?._id as any } game={ game } session={ session }/>
                 </div>
                 
                 <div className={ styles.gameItem__description }>

@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if(!session) return res.status(401).json('로그인 정보를 확인해주세요.')
 
         try {
-            const insertData = { gameId : req.body.gameId, userEmail : session?.user?.email }
+            const insertData = { gameId : req.query.gameId, userEmail : session?.user?.email }
             const result = await db.collection('likes').insertOne({ ...insertData })
 
             return res.status(200).json(result)

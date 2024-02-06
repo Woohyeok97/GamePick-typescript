@@ -26,9 +26,9 @@ export default async function GamePage({ params } : GameDetailPageProps) {
                         {/* { params?.id === game?._id.toString() &&
                             <LikeButton gameId={ game?._id.toString() }/>
                         }   */}
-                        { game?._id.toString() &&
+                        {/* { game?._id.toString() &&
                             <LikeButton gameId={ game?._id.toString() }/>
-                        }
+                        } */}
                     </div>
                 </div>
             </div>
