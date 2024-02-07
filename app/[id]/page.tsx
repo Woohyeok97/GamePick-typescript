@@ -1,5 +1,7 @@
 import { connectDB } from "@/utils/database";
 import { ObjectId } from "mongodb";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 // components
 import TrailerImage from "@/components/trailerImage/TrailerImage";
 import LikeButton from "@/components/shared/LikeButton";
@@ -7,28 +9,46 @@ import LikeButton from "@/components/shared/LikeButton";
 import { GameType } from "@/interface";
 
 
+
 interface GameDetailPageProps {
     params : { id : string }
 }
 
-export default async function GamePage({ params } : GameDetailPageProps) {
+async function getGame(gameId : string) {
     const db = (await connectDB).db('game-pick')
-    const game = await db.collection('games').findOne({ _id : new ObjectId(params?.id) })
-
-    console.log(`나는 게임페이지 렌더링됨! : ${game?.title}`)
+    const response = await db.collection('games').findOne({ _id : new ObjectId(gameId) })
     
+    return response
+}
+
+async function getUserLike(gameId : string, email : string) {
+    if(!email) return null
+    
+    const db = (await connectDB).db('game-pick')
+    const response = await db.collection('likes').findOne({ gameId : gameId, userEmail : email })
+
+    return response
+}
+
+
+export default async function GamePage({ params } : GameDetailPageProps) {
+    const session = await getServerSession(authOptions)
+    const game = await getGame(params?.id)
+    const userLike = await getUserLike(`${game?._id}`, `${session?.user?.email}`)
+  
     return (
         <div className="page detail-page">
             <div className="page__header">
                 <div className="detail-page__header-box">
                     <h2>{ game?.title }</h2>
                     <div>
-                        {/* { params?.id === game?._id.toString() &&
-                            <LikeButton gameId={ game?._id.toString() }/>
-                        }   */}
-                        {/* { game?._id.toString() &&
-                            <LikeButton gameId={ game?._id.toString() }/>
-                        } */}
+                        { params?.id === game?._id.toString() &&
+                            <LikeButton
+                                userLike={ userLike?._id ? userLike?._id.toString() : null } 
+                                game={ game as GameType } 
+                                session={ session } 
+                            />
+                        } 
                     </div>
                 </div>
             </div>

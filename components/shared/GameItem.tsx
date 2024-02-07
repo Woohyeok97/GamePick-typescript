@@ -4,15 +4,16 @@ import { connectDB } from '@/utils/database'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 // component
-
-// type
-import { GameType, LikeType } from '@/interface'
 import LikeButton from './LikeButton'
+// type
+import { GameType} from '@/interface'
+
 
 
 
 async function getUserLike(gameId : string, email : string) {
     if(!email) return null
+
     const db = (await connectDB).db('game-pick')
     const response = await db.collection('likes').findOne({ gameId : gameId, userEmail : email })
 
@@ -37,7 +38,11 @@ export default async function GameItem({ game } : GameItemProps) {
                         { game?.title } 
                     </h1>
 
-                    <LikeButton userLike={ userLike?._id as any } game={ game } session={ session }/>
+                    <LikeButton 
+                        userLike={ userLike?._id ? userLike?._id.toString() : null } 
+                        game={ game } 
+                        session={ session }
+                    />
                 </div>
                 
                 <div className={ styles.gameItem__description }>
