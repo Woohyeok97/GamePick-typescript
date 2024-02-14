@@ -1,32 +1,38 @@
 import styles from './GameItem.module.scss'
 import Image from 'next/image'
 import { connectDB } from '@/utils/database'
-import { getServerSession } from 'next-auth'
+import { Session, getServerSession } from 'next-auth'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 // component
 import LikeButton from './LikeButton'
 // type
 import { GameType} from '@/interface'
+import { LikeSchema } from '@/app/zod'
 
 
 
+async function getUserLike(gameId: string, session: Session | null) {
+    if (!session) return null;
 
-async function getUserLike(gameId : string, email : string) {
-    if(!email) return null
+    const db = (await connectDB).db('game-pick');
+    const response = await db.collection('likes').findOne({ gameId: gameId, userEmail: session.user?.email });
 
-    const db = (await connectDB).db('game-pick')
-    const response = await db.collection('likes').findOne({ gameId : gameId, userEmail : email })
+    if (response) {
+        const userLike = LikeSchema.parse({ ...response, _id: response?._id.toString() });
+        return userLike;
+    }
 
-    return response
+    return null;
 }
+
 
 interface GameItemProps {
-    game : GameType,
+    game: GameType,
 }
 
-export default async function GameItem({ game } : GameItemProps) {
-    const session = await getServerSession(authOptions)
-    const userLike = await getUserLike(`${game?._id}`, session?.user?.email as string)
+export default async function GameItem({ game }: GameItemProps) {
+    const session = await getServerSession(authOptions);
+    const userLike = await getUserLike(game?._id, session);
 
     return (
         <div className={ styles.gameItem }>
@@ -38,11 +44,7 @@ export default async function GameItem({ game } : GameItemProps) {
                         { game?.title } 
                     </h1>
 
-                    <LikeButton 
-                        userLike={ userLike?._id ? userLike?._id.toString() : null } 
-                        game={ game } 
-                        session={ session }
-                    />
+                    <LikeButton userLike={ userLike } game={ game } session={ session } />
                 </div>
                 
                 <div className={ styles.gameItem__description }>
@@ -53,8 +55,9 @@ export default async function GameItem({ game } : GameItemProps) {
                 </div>
             </div>
         </div>
-    )
+    );
 }
+
 
 // import Image from 'next/image'
 // import styles from './GameItem.module.scss'

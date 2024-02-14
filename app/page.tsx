@@ -7,19 +7,20 @@ import GameItem from '@/components/shared/GameItem'
 import UserProfile from '@/components/shared/UserProfile'
 import GuestProfile from '@/components/shared/GuestProfile'
 // type
-import { GameType } from '@/interface'
+import { GameSchema } from './zod'
 
 
 async function getGameList() {
     const db = (await connectDB).db('game-pick')
-    const response = await db.collection('games').find().toArray()
-    console.log('게임리스트 요청 실행됨')
-    return response
+    const response = await db.collection('games').find().toArray();
+    const gameList = response.map(item => ({ ...item, _id: item?._id.toString() })).map(item => GameSchema.parse(item));
+
+    return gameList;
 }
 
 export default async function HomePage() {
-    const session = await getServerSession(authOptions)
-    const gameList = await getGameList()
+    const session = await getServerSession(authOptions);
+    const gameList = await getGameList();
     
     return (
         <div className="page games-page">
@@ -37,9 +38,9 @@ export default async function HomePage() {
 
             <ul className="games-page__game-list">
             { gameList?.map((item, _) => (
-                <li key={`${item?._id}`}>
+                <li key={item?._id}>
                     <Link href={`/${item?._id}`}>
-                        <GameItem game={ item as GameType }/>
+                        <GameItem game={ item } />
                     </Link>
                 </li> )
             ) }
