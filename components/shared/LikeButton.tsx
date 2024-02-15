@@ -33,6 +33,7 @@ export default function LikeButton({ game, userLike, session }: LikeButtonProps)
         const response = await axios.post(`${process.env.NEXT_PUBLIC_LIKES_API}/?gameId=${game?._id}`);
         return response.data?.insertedId; // insertedId를 반환
     };
+    // 좋아요 삭제 요청
     const deleteUserLike = async () => {
         const response = await axios.delete(`${process.env.NEXT_PUBLIC_LIKES_API}/${currentLikeId}`);
         return response.data;

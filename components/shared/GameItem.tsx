@@ -1,33 +1,17 @@
-import styles from './GameItem.module.scss'
-import Image from 'next/image'
-import { connectDB } from '@/utils/database'
-import { Session, getServerSession } from 'next-auth'
-import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import styles from './GameItem.module.scss';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 // component
-import LikeButton from './LikeButton'
+import LikeButton from './LikeButton';
+import Image from 'next/image';
+// remotes
+import { getUserLike } from '@/app/remotes/mongodb/servie';
 // type
-import { GameType} from '@/interface'
-import { LikeSchema } from '@/app/zod'
-
-
-
-async function getUserLike(gameId: string, session: Session | null) {
-    if (!session) return null;
-
-    const db = (await connectDB).db('game-pick');
-    const response = await db.collection('likes').findOne({ gameId: gameId, userEmail: session.user?.email });
-
-    if (response) {
-        const userLike = LikeSchema.parse({ ...response, _id: response?._id.toString() });
-        return userLike;
-    }
-
-    return null;
-}
+import { GameType } from '@/interface';
 
 
 interface GameItemProps {
-    game: GameType,
+    game: GameType;
 }
 
 export default async function GameItem({ game }: GameItemProps) {

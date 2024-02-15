@@ -6,17 +6,9 @@ import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import GameItem from '@/components/shared/GameItem'
 import UserProfile from '@/components/shared/UserProfile'
 import GuestProfile from '@/components/shared/GuestProfile'
-// type
-import { GameSchema } from './zod'
+// remotes
+import { getGameList } from './remotes/mongodb/servie';
 
-
-async function getGameList() {
-    const db = (await connectDB).db('game-pick')
-    const response = await db.collection('games').find().toArray();
-    const gameList = response.map(item => ({ ...item, _id: item?._id.toString() })).map(item => GameSchema.parse(item));
-
-    return gameList;
-}
 
 export default async function HomePage() {
     const session = await getServerSession(authOptions);
