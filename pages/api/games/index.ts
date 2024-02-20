@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if(req.method === 'GET') {
         try {
             
-            const result = await db.collection('games').find().toArray() as GameType[]
+            const result = await db.collection('games').find().toArray();
             return res.status(200).json(result)
         } catch(err) {
             return res.status(500).json(err)
@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if(!session) return res.status(400).json('로그인 이후 이용해주세요.')
 
         try {
-            const formData : GameType = req.body
+            const formData = req.body
             const result = await db.collection('games').insertOne(formData)
             
             console.log(formData)
@@ -37,6 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return res.status(200).json(result)
 
         } catch(err) {
+            console.log(err);
             return res.status(500).json(err)
         }
     }

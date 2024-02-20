@@ -1,10 +1,12 @@
 import { z } from "zod";
 // schema
-import { GameSchema, LikeSchema } from "@/app/zod";
-
+import { GameFormSchema, GameSchema, LikeSchema } from "@/app/zod";
 
 // 게임 타입
 export type GameType = z.infer<typeof GameSchema>;
+
+// 게임 폼 타입
+export type GameFormType = z.infer<typeof GameFormSchema>;
 
 // 관심 타입
 export type LikeType = z.infer<typeof LikeSchema> | null;

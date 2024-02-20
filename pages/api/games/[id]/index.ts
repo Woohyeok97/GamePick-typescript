@@ -25,12 +25,13 @@ export default async function handler(req : NextApiRequest, res : NextApiRespons
     // PUT
     if(req.method === 'PUT') {
         if(!session) return res.status(401).json('로그인 상태를 확인해주세요.')
-
         try {
-            const result = await db.collection('games').updateOne({ _id : new ObjectId(`${req.query.id}`) }, { $set : req.body })
+            const { _id, ...updateData } = req.body;
+            const result = await db.collection('games').updateOne({ _id : new ObjectId(`${req.query.id}`) }, { $set : updateData });
             return res.status(200).json(result)
             
         } catch(err) {
+            console.log(err)
             return res.status(500).json(err)
         }
     }

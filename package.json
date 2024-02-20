@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "@reduxjs/toolkit": "^2.1.0",
     "@tanstack/react-query": "^5.17.19",
     "aws-sdk": "^2.1548.0",
@@ -18,7 +19,7 @@
     "next-auth": "^4.24.5",
     "react": "^18",
     "react-dom": "^18",
-    "react-hook-form": "^7.49.3",
+    "react-hook-form": "^7.50.1",
     "react-redux": "^9.1.0",
     "react-youtube": "^10.1.0",
     "sass": "^1.70.0",
