@@ -9,8 +9,8 @@ import useOverlay from "@/hooks/useOverlay";
 // type
 import { GameFormType } from "@/interface";
 // remotes
-import { uploadGame } from "../remotes/axois/gameAPI";
-import { uploadImage } from "../remotes/axois/imageAPI";
+import { createGame } from "../remotes/axois/gameAPI";
+import { createImage } from "../remotes/axois/imageAPI";
 
 
 export default function GameUploadPage() {
@@ -18,12 +18,12 @@ export default function GameUploadPage() {
   const overlay = useOverlay();
 
   // 게임 업로드
-  const createGameData = async (data: GameFormType) => {
+  const uploadGame = async (data: GameFormType) => {
     if (data.image instanceof File) {
-      const imageURL = await uploadImage(data.image)
+      const imageURL = await createImage(data.image)
       data = { ...data, image: imageURL };
     }
-    await uploadGame(data);
+    await createGame(data);
     alert('게임을 업로드 하였습니다.');
     route.replace('/');
   }
@@ -32,7 +32,7 @@ export default function GameUploadPage() {
   const handleClick = (data: GameFormType) => {
     overlay.open((isOpen, close) => (
       <FullOverlayWrap isOpen={isOpen} close={close}>
-        <GameUploadPreview game={data} onSubmit={() => createGameData(data)}/>
+        <GameUploadPreview game={data} onSubmit={() => uploadGame(data)}/>
       </FullOverlayWrap>
     ));
   };

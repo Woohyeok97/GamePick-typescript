@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // 이미지 업로드
-export const uploadImage = async (file: File): Promise<string> => {
+export const createImage = async (file: File): Promise<string> => {
   const name = encodeURIComponent(file?.name);
     // presignURL
   const { data } = await axios.get(`${process.env.NEXT_PUBLIC_AWS_S3_API}/${name}`);

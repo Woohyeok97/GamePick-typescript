@@ -12,7 +12,7 @@ export const fetchGameById = async (gameId: string): Promise<GameType> => {
 };
 
 // 게임 업로드
-export const uploadGame = async (game: GameFormType) => {
+export const createGame = async (game: GameFormType) => {
   if (GameFormSchema.parse(game)) {
     const response = await axios.post(`${process.env.NEXT_PUBLIC_GAMES_API}`, game);
     return response;

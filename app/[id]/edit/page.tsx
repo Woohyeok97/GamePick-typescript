@@ -11,7 +11,7 @@ import useOverlay from "@/hooks/useOverlay";
 import { GameFormType } from "@/interface";
 // remotes
 import { fetchGameById, updateGameById } from "@/app/remotes/axois/gameAPI";
-import { uploadImage } from "@/app/remotes/axois/imageAPI";
+import { createImage } from "@/app/remotes/axois/imageAPI";
 
 
 interface GameEditPageProps {
@@ -34,7 +34,7 @@ export default function GameEditPage({ params }: GameEditPageProps) {
   const mutation = useMutation({
     mutationFn : async (data: GameFormType) => {
       if (data.image instanceof File) {
-          const imageURL = await uploadImage(data.image);
+          const imageURL = await createImage(data.image);
           data = { ...data, image: imageURL as string };
       }
       const response = await updateGameById(params.id, data);
