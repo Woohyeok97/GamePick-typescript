@@ -63,7 +63,7 @@ export default function GameEditPage({ params }: GameEditPageProps) {
     //         console.log(err)
     //     }
     // }
-
+  // 미리보기 오픈 핸들러
   const handleClick = (data: GameFormType) => {
     overlay.open((isOpen, close) => (
       <FullOverlayWrap isOpen={isOpen} close={close}>
