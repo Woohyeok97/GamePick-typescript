@@ -38,7 +38,7 @@ export default function GameUploadPage() {
 
   // 게임 업로드
   const uploadGame = async (data: GameFormType) => {
-    if (data.image instanceof File) {
+    if (typeof(window) !== 'undefined' && data.image instanceof File) {
       const imageURL = await createImage(data.image)
       data = { ...data, image: imageURL };
     }

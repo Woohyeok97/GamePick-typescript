@@ -62,7 +62,7 @@ export default function GameEditPage({ params }: GameEditPageProps) {
 
   const mutation = useMutation({
     mutationFn : async (data: GameFormType) => {
-      if (data.image instanceof File) {
+      if (typeof(window) !== 'undefined' && data.image instanceof File) {
           const imageURL = await createImage(data.image);
           data = { ...data, image: imageURL as string };
       }
