@@ -24,12 +24,13 @@ jobs:
           node-version: 16.x
 
       - name: yarn install # package.json에 있는 의존성 파일들을 설치해준다.(yarn)
-        working-directory: ./WEB(BE)
         run: yarn install
 
-      - name: make zip file # 압축 파일을 만들어준다.
-        working-directory: ./WEB(BE)
-        run: zip -r app.zip package.json ./dist
+      - name: Bulid
+        run: yarn build
+
+      - name: make zip file # node modules 제외한 압축 파일을 만들어준다.
+        run: zip -r app.zip . -x "node_modules/*"
 
       - name: Deploy to EB # Elastic Beanstalk으로 배포를 진행한다.
         uses: einaregilsson/beanstalk-deploy@v20
@@ -40,4 +41,4 @@ jobs:
           environment_name: Game-pick-env
           version_label: ${{ github.run_number }}
           region: ap-northeast-2
-          deployment_package: ./WEB(BE)/app.zip
+          deployment_package: app.zip
