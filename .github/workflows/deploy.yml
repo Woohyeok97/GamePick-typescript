@@ -33,7 +33,7 @@ jobs:
       - name: Set single environment variables
         run: |
           echo "MONGODB_URL=${{ secrets.MONGODB_URL }}" >> .env
-          echo "MONGODB_URL=${{ secrets.AWS_S3_BUCKET_NAME }}" >> .env
+          echo "AWS_S3_BUCKET_NAME=${{ secrets.AWS_S3_BUCKET_NAME }}" >> .env
 
         # NEXT_PUBLIC 환경변수 env에 추가
       - name: Set public environment variables
