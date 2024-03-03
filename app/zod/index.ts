@@ -18,7 +18,7 @@ export const GameFormSchema = z.object({
   trailerUrl: z.string().min(1, '트레일러 url을 입력해주세요.'),
   image: z.union([
       z.string().url().min(1, '이미지를 선택해주세요.'),
-      z.instanceof(File),
+      typeof(window) !== 'undefined' ? z.instanceof(File) : z.null(),
   ]),
   description: z.string().min(1, '설명을 입력해주세요.'),
 });
