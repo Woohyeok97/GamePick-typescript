@@ -1,0 +1,43 @@
+name: Deploy Elastic Beanstalk
+
+# main branch에 push 되면 실행
+on:
+  push:
+    branches:
+      - main
+  # 깃허브페이지에서 직접 수동으로 워크플로우 실행
+  workflow_dispatch:
+
+# 워크플로우 동안 실행할 '작업들'
+jobs:
+  # build라는 이름의 '작업' 정의
+  build:
+    runs-on: ubuntu-latest # action이 구동될 OS 환경을 세팅해준다.
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Node # action이 구동될 Node 환경을 세팅해준다.
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: yarn install # package.json에 있는 의존성 파일들을 설치해준다.(yarn)
+        working-directory: ./WEB(BE)
+        run: yarn install
+
+      - name: make zip file # 압축 파일을 만들어준다.
+        working-directory: ./WEB(BE)
+        run: zip -r app.zip package.json ./dist
+
+      - name: Deploy to EB # Elastic Beanstalk으로 배포를 진행한다.
+        uses: einaregilsson/beanstalk-deploy@v20
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+          application_name: game-pick
+          environment_name: Game-pick-env
+          version_label: ${{ github.run_number }}
+          region: ap-northeast-2
+          deployment_package: ./WEB(BE)/app.zip
