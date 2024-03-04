@@ -45,7 +45,7 @@ jobs:
       - name: yarn install # package.json에 있는 의존성 파일들을 설치해준다.(yarn)
         run: yarn install
 
-      - name: Bulid
+      - name: Build
         run: yarn build
 
       - name: make zip file # node modules 제외한 압축 파일을 만들어준다.
