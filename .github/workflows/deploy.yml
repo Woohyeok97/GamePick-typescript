@@ -18,10 +18,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up Node # action이 구동될 Node 버전을 세팅해.
+      - name: Set up Node # action이 구동될 Node 버전을 세팅함
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 20.x
       
         # 멀티 깃헙 시크릿 env에 추가
       - name: Set multi environment variables
@@ -52,12 +52,12 @@ jobs:
         run: zip -r app.zip . -x "node_modules/*"
 
       - name: Deploy to EB # Elastic Beanstalk으로 배포를 진행한다.
-        uses: einaregilsson/beanstalk-deploy@v20
+        uses: einaregilsson/beanstalk-deploy@v21
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
           application_name: game-pick
-          environment_name: Game-pick-env
+          environment_name: game-pick
           version_label: ${{ github.run_number }}
           region: ap-northeast-2
           deployment_package: app.zip
