@@ -37,7 +37,8 @@ next-env.d.ts
 tsconfig.json
 
 .env
-
+.env.development
+.env.production
 # yarn zero install
 .yarn/*
 !.yarn/cache
