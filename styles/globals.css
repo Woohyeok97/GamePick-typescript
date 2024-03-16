@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bgColor text-fontColor m-0;
+  }
+  input {
+    @apply outline-none border-none;
+  }
+  textarea {
+    @apply outline-none resize-none border-none;
+  }
+  a {
+    @apply text-inherit;
+    text-decoration: none;
+  }
+  button {
+    @apply border-none outline-none;
+  }
+  ul {
+    @apply list-none p-0 m-0;
+  }
+  h1, h2, h3, h4, h5 {
+    @apply m-0;
+  }
+}
+
+
+@layer components {
+  .page {
+    @apply mt-[20px] mb-[80px] w-full md:mt-[60px];
+  }
+  .page__header {
+    @apply mb-[30px] py-3 font-bold text-3xl;
+  }
+  .form__block {
+    @apply flex flex-col p-4 mb-6 bg-bgGray rounded-md; 
+  }
+  .form__label {
+    @apply text-fontGray pb-3;
+  }
+  .form__warning {
+    @apply text-fontWarning pb-2;
+  }
+  .form__input {
+    @apply text-lg p-3
+  }
+  .btn {
+    @apply
+    text-xl
+    font-bold
+    text-fontWhite
+    bg-btnColor
+    rounded-md
+    py-3
+    px-5
+    cursor-pointer
+    border
+    border-[#001b371a];
+  }
+  .likeActive {
+    @apply text-fontWarning hover:font-extrabold;
+  }
+  .likeInactive {
+    @apply text-fontGray hover:font-extrabold;
+  }
+}
