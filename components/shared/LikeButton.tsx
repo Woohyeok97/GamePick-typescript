@@ -1,11 +1,10 @@
 'use client'
-import styles from './LikeButton.module.scss'
 import { Session } from 'next-auth'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 // type
-import { GameType, LikeType } from '@/interface'
+import { GameType, LikeType } from '@/interface';
 // remotes
-import { createLike, deleteLikeById } from '@/app/remotes/axois/likeAPI'
+import { createLike, deleteLikeById } from '@/app/remotes/axois/likeAPI';
 
 interface LikeButtonProps {
   game: GameType;
@@ -61,8 +60,8 @@ export default function LikeButton({ game, userLike, session }: LikeButtonProps)
 
   // 분기 ) 로그인 정보가 없을때
   if (!session?.user) return (
-    <div className={styles.likeButton}>
-      <div className={styles.likeButton__btn} onClick={() => alert('로그인 이후 이용해주세요.')}>
+    <div className="text-2xl cursor-pointer">
+      <div className="likeInactive" onClick={() => alert('로그인 이후 이용해주세요.')}>
         하트
       </div>
     </div>
@@ -70,11 +69,8 @@ export default function LikeButton({ game, userLike, session }: LikeButtonProps)
   
   // 분기 ) 좋아요 정보가 없을때
   if (!currentLikeId) return (
-    <div className={styles.likeButton}>
-      <div 
-        className={isPending ? `${styles.likeButton__btnActive}` : `${styles.likeButton__btn}`}
-        onClick={handleClick}
-      >
+    <div className="text-2xl cursor-pointer">
+      <div className={isPending ? 'likeActive' : 'likeInactive'}onClick={handleClick}>
         하트
       </div>
     </div>
@@ -82,11 +78,8 @@ export default function LikeButton({ game, userLike, session }: LikeButtonProps)
 
   // 분기) 좋아요 정보 있을때
   if (currentLikeId) return (
-    <div className={ styles.likeButton }>
-      <div 
-        className={isPending ? `${styles.likeButton__btn}` : `${styles.likeButton__btnActive}`} 
-        onClick={handleClick}
-      >
+    <div className="text-2xl cursor-pointer">
+      <div className={isPending ? 'likeInactive' : 'likeActive'} onClick={handleClick}>
         하트
       </div>
     </div>

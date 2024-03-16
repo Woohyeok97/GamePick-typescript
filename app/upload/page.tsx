@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { useController, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 // components
-import MutltiForm from "@/components/shared/MultiForm";
+import MutltiForm from "@/components/form/MultiForm";
 import FullOverlayWrap from "@/components/overlayWraps/FullOverlayWrap";
 import GameUploadPreview from "@/components/shared/GameUploadPreview";
 // hooks
@@ -34,7 +34,7 @@ export default function GameUploadPage() {
     } else {
       imageField.onChange(null);
     }
-  }
+  };
 
   // 게임 업로드
   const uploadGame = async (data: GameFormType) => {
@@ -45,13 +45,13 @@ export default function GameUploadPage() {
     await createGame(data);
     alert('게임을 업로드 하였습니다.');
     route.replace('/');
-  }
+  };
 
   // 미리보기 오픈 핸들러
   const handleClick = (data: GameFormType) => {
     overlay.open((isOpen, close) => (
       <FullOverlayWrap isOpen={isOpen} close={close}>
-        <GameUploadPreview game={data} onSubmit={() => uploadGame(data)}/>
+        <GameUploadPreview game={data} onSubmit={() => uploadGame(data)} />
       </FullOverlayWrap>
     ));
   };
@@ -62,13 +62,13 @@ export default function GameUploadPage() {
         <h2>게임 생성</h2>
       </div>
       <MutltiForm onSubmit={handleSubmit(handleClick)} errors={errors}>
-        <MutltiForm.TextField label="title" fieldProps={{ ...register('title') }}/>
-        <MutltiForm.DateField label="releasedAt" fieldProps={{ ...register('releasedAt') }}/>
-        <MutltiForm.TextField label='trailerUrl' fieldProps={{ ...register('trailerUrl') }}/>
-        <MutltiForm.FileField label='image' fieldProps={{ onChange: onChangeImage }}/>
-        <MutltiForm.TextareaField label='description' fieldProps={{ ...register('description') }}/>
-        <div className="form__btn-area">
-          <button type='submit' className='btn'>
+        <MutltiForm.TextField label="게임 타이틀" fieldProps={{ ...register('title') }} />
+        <MutltiForm.DateField label="출시일" fieldProps={{ ...register('releasedAt') }} />
+        <MutltiForm.TextField label='트레일러' fieldProps={{ ...register('trailerUrl') }} />
+        <MutltiForm.FileField label='게임 이미지' fieldProps={{ onChange: onChangeImage }} />
+        <MutltiForm.TextareaField label='게임 소개' fieldProps={{ ...register('description') }} />
+        <div className="flex flex-row-reverse mt-10">
+          <button type='submit' className='px-4 btn'>
             미리보기
           </button>
         </div>

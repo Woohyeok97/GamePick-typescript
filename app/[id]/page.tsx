@@ -16,30 +16,34 @@ export default async function GamePage({ params }: GameDetailPageProps) {
   const userLike = await getUserLike(game?._id, session);
 
   return (
-    <div className="page detail-page">
+    <div className="page">
       <div className="page__header">
-        <div className="detail-page__header-box">
-          <h2>{ game?.title }</h2>
+        <div className="flex justify-between">
+          <h2>{game?.title}</h2>
           <div>
             <LikeButton userLike={userLike} game={game} session={session} />
           </div>
         </div>
       </div>
-      <div className="detail-page__detail">
-        <div className="detail__img-box">
+      <div className="flex flex-col gap-5 justify-betwee lg:flex-row">
+        <div className="mr-[5%] md:mr-0 mb-10">
           <TrailerImage game={game} />
         </div>
 
-        <div className="detail__info-box">
-          <div className="detail__info description">
-            <div className="header">소개</div>
-            <div className="text">
+        <div className="flex flex-col justify-between flex-grow gap-5">
+          <div className="bg-bgGray rounded-[15px] p-5 flex-grow">
+            <div className="mb-3 text-lg font-bold">
+              소개
+            </div>
+            <div className="text-fontDarkGray">
               {game?.description}
             </div>
           </div>
-            <div className="detail__info releasedAt">
-              <div className="header">출시일</div>
-              <div className="text">
+            <div className="bg-bgGray rounded-[15px] p-5 releasedAt">
+              <div className="mb-3 text-lg font-bold">
+                출시일
+              </div>
+              <div className="text-fontDarkGrayt">
                 {game?.releasedAt}
               </div>
             </div>

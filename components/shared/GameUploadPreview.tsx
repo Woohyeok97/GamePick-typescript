@@ -1,5 +1,3 @@
-'use client'
-import styles from './GameUploadPreview.module.scss';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 // type
@@ -24,35 +22,27 @@ export default function GameUploadPreview({ game, onSubmit }: GameUploadPreviewP
   }, [game.image]);
 
   return (
-    <div className={ styles.gameUploadPreview }>
-      <div className={ styles.gameUploadPreview__preview }>
-        <div className={ styles.gameItem }>
-          {objectUrl && <Image src={ objectUrl } width={300} height={250} alt='n' className={ styles.gameItem__img }/>}
-          
-          <div className={ styles.gameItem__infoBox }>
-            <div className={ styles.gameItem__header }>
-              <h1 className={ styles.gameItem__title }>
-                {game?.title} 
-              </h1>
-            </div>
-          
-            <div className={ styles.gameItem__description }>
-                {game?.description}
-            </div>
-            <div className={ styles.gameItem__releasedAt }>
-              {game?.releasedAt} 출시
-            </div>
+    <div className="flex flex-col justify-between h-full">
+      <div className="flex flex-col items-center justify-between w-full gap-3 mt-12 md:flex-row md:gap-10">
+        {objectUrl && <Image src={objectUrl} width={300} height={250} alt='n' />}
+
+        <div className="flex flex-col flex-grow w-full">
+          <div className="flex items-center justify-between mb-5">
+            <h1 className="text-2xl font-bold lg:text-4xl">{game?.title}</h1>
           </div>
+          
+          <div className="mb-5 lg:text-xl">{game?.description}</div>
+          <div className="mb-5 text-fontGray">{game?.releasedAt} 출시</div>
         </div>
       </div>
-
-      <div className={ styles.gameUploadPreview__inner }>
-        <div className={ styles.gameUploadPreview__noti }>
-          <div>이 게임은 이렇게 보일 거예요.</div>
-          <p>업로드 할까요?</p>
-        </div>
-        <div className={ styles.gameUploadPreview__btnArea }>
-          <button className='btn' onClick={ onSubmit }>업로드</button>
+      
+      <div>
+        <>
+          <div className="mb-2 text-md text-fontDarkGray md:text-xl">이 게임은 이렇게 보일 거예요.</div>
+          <p className="text-lg md:text-3xl">업로드 할까요?</p>
+        </>
+        <div className="flex justify-center w-full mt-5 lg:mt-12">
+          <button className='w-full btn' onClick={onSubmit}>업로드</button>
         </div>
       </div>
     </div>

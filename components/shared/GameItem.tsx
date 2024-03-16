@@ -1,4 +1,3 @@
-import styles from './GameItem.module.scss';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 // component
@@ -11,88 +10,26 @@ import { GameType } from '@/interface';
 
 
 interface GameItemProps {
-    game: GameType;
+  game: GameType;
 }
 
 export default async function GameItem({ game }: GameItemProps) {
-    const session = await getServerSession(authOptions);
-    const userLike = await getUserLike(game?._id, session);
+  const session = await getServerSession(authOptions);
+  const userLike = await getUserLike(game?._id, session);
 
-    return (
-        <div className={ styles.gameItem }>
-            <Image src={ game?.image } width={300} height={250} alt='n' className={ styles.gameItem__img }/>
-            
-            <div className={ styles.gameItem__infoBox }>
-                <div className={ styles.gameItem__header }>
-                    <h1 className={ styles.gameItem__title }>
-                        { game?.title } 
-                    </h1>
-
-                    <LikeButton userLike={ userLike } game={ game } session={ session } />
-                </div>
-                
-                <div className={ styles.gameItem__description }>
-                    { game?.description }
-                </div>
-                <div className={ styles.gameItem__releasedAt }>
-                    { game?.releasedAt } 출시
-                </div>
-            </div>
+  return (
+    <div className="flex flex-col justify-between items-center w-full mb-[60px] md:flex-row">
+      <Image src={game?.image} width={300} height={250} alt='n' className="w-full rounded-md md:mr-[5%]"/>
+      
+      <div className="flex flex-col flex-grow">
+        <div className="flex items-center justify-between mb-5">
+          <h1 className="text-2xl font-bold lg:text-4xl">{game?.title}</h1>
+          <LikeButton userLike={userLike} game={game} session={session} />
         </div>
-    );
+        
+        <div className="mb-5 lg:text-xl">{game?.description}</div>
+        <div className="mb-5 text-fontGray">{game?.releasedAt} 출시</div>
+      </div>
+    </div>
+  );
 }
-
-
-// import Image from 'next/image'
-// import styles from './GameItem.module.scss'
-// import { getServerSession } from 'next-auth'
-// import { authOptions } from '@/pages/api/auth/[...nextauth]'
-// // type
-// import { GameType } from '@/interface'
-// import { connectDB } from '@/utils/database'
-
-
-
-// export async function getUserLike(userEmail : any, gameId : string) {
-//     if(!userEmail) return null
-
-//     const db = (await connectDB).db('game-pick')
-//     const userLike = await db.collection('likes').findOne({ userEmail : userEmail, gameId : gameId })
-//     console.log(`게임아이템 좋아요페치 실행됨`, gameId)
-//     return userLike
-// }
-
-// interface GameItemProps {
-//     game : GameType,
-// }
-
-// export default async function GameItem({ game } : GameItemProps) {
-//     const session = await getServerSession(authOptions)
-//     const userLike = await getUserLike(session?.user?.email, `${game?._id}`)
-//     const likeClass = `${ styles.gameItem__like } ${userLike ? styles.likeActive : styles.likeInactive}`
-
-    
-//     return (
-//         <div className={ styles.gameItem }>
-//             <Image src={ game?.image } width={300} height={250} alt='n' className={ styles.gameItem__img }/>
-            
-//             <div className={ styles.gameItem__infoBox }>
-//                 <div className={ styles.gameItem__header }>
-//                     <h1 className={ styles.gameItem__title }>
-//                         { game?.title } 
-//                     </h1>
-//                     <div className={ likeClass }>
-//                         하트
-//                     </div>
-//                 </div>
-                
-//                 <div className={ styles.gameItem__description }>
-//                     { game?.description }
-//                 </div>
-//                 <div className={ styles.gameItem__releasedAt }>
-//                     { game?.releasedAt } 출시
-//                 </div>
-//             </div>
-//         </div>
-//     )
-// }

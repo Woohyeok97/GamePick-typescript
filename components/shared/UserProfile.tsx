@@ -1,24 +1,26 @@
-import styles from './UserProfile.module.scss'
-import { Session } from "next-auth"
-import Image from 'next/image'
-
+import { Session } from "next-auth";
+import Image from 'next/image';
 
 interface UserProfileProps {
-    session : Session,
+  session: Session;
 }
 
-export default function UserProfile({ session } : UserProfileProps) {
-    const { user } = session
+export default function UserProfile({ session }: UserProfileProps) {
+  const { user } = session;
 
-    return (
-        <div className={ styles.userProfile }>
-            <div className={ styles.userProfile__info }>
-                <span className={ styles.userProfile__name }>{ user?.name }</span>
-                <span className={ styles.userProfile__email }>{ user?.email }</span>
-            </div>
-            <div>
-            { user?.image && <Image src={ user?.image } alt='user-img' width={100} height={100}/> }
-            </div>
-        </div>
-    )
+  return (
+    <div className="flex justify-between gap-10 p-5 rounded-md bg-bgGray">
+      <div className="flex flex-col flex-1 min-w-0">
+        <span className="mb-1 overflow-hidden text-xl font-bold sm:text-md whitespace-nowrap overflow-ellipsis">
+          {user?.name}
+        </span>
+        <span className="overflow-hidden text-fontGray whitespace-nowrap overflow-ellipsis">
+          {user?.email}
+        </span>
+      </div>
+      <div>
+      {user?.image && <Image src={user?.image} alt='user-img' width={100} height={100} />}
+      </div>
+    </div>
+  );
 }
