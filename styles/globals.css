@@ -69,4 +69,7 @@
   .likeInactive {
     @apply text-fontGray hover:font-extrabold;
   }
+  .gameImage {
+    @apply object-cover w-full h-full rounded-lg;
+  }
 }

@@ -27,13 +27,11 @@ export default async function GamePage({ params }: GameDetailPageProps) {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-5 justify-betwee lg:flex-row">
-        <div className="mr-[5%] md:mr-0 mb-10">
-          <TrailerImage game={game} />
-        </div>
+      <div className="flex flex-col w-full gap-5 justify-betwee lg:flex-row md:gap-8">
+        <TrailerImage game={game} />
 
         <div className="flex flex-col justify-between flex-grow gap-5">
-          <div className="bg-bgGray rounded-[15px] p-5 flex-grow">
+          <div className="flex-grow p-5 rounded-lg bg-bgGray">
             <div className="mb-3 text-lg font-bold">
               소개
             </div>
@@ -41,7 +39,7 @@ export default async function GamePage({ params }: GameDetailPageProps) {
               {game?.description}
             </div>
           </div>
-            <div className="bg-bgGray rounded-[15px] p-5 releasedAt">
+            <div className="p-5 rounded-lg bg-bgGray releasedAt">
               <div className="mb-3 text-lg font-bold">
                 출시일
               </div>

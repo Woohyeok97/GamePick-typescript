@@ -24,8 +24,10 @@ export default function TrailerImage({ game }: TrailerImageProps) {
   };
 
   return (
-    <div className="relative rounded-md overflow-hidden w-full h-[420px] cursor-pointer md:w-[640px]">
-      <Image src={game?.image} fill alt="img" className="object-cover w-full h-full" />
+    <div className="relative w-full cursor-pointer md:basis-[40%]">
+      <div className="relative h-[280px] md:w-[620px] mb-4 md:h-[460px] md:mb-0">
+        <Image src={game.image} fill alt='n' className="gameImage" />
+      </div>
       <div 
         className="opacity-0 absolute top-0 left-0 w-full h-full bg-black flex justify-end items-end py-[2.5%] px-[4%] box-border hover:opacity-30"
         onClick={handleTrailerOverlayOpen}
