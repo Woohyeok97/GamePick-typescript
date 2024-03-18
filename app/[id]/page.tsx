@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 // components
-import TrailerImage from "@/components/trailerImage/TrailerImage";
+import TrailerImage from "@/components/trailer/TrailerImage";
 import LikeButton from "@/components/shared/LikeButton";
 // remotes
 import { getGameById, getUserLike } from "../../remotes/mongodb/servie";

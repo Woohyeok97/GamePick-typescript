@@ -3,8 +3,8 @@ import { useRouter } from "next/navigation";
 import { useController, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 // components
-import MutltiForm from "@/components/form/MultiForm";
-import FullOverlayWrap from "@/components/overlayWraps/FullOverlayWrap";
+import MutltiForm from "@/components/shared/MultiForm";
+import FullOverlayWrap from "@/components/overlay/FullOverlayWrap";
 import GameUploadPreview from "@/components/shared/GameUploadPreview";
 // hooks
 import useOverlay from "@/hooks/useOverlay";

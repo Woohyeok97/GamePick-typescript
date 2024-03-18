@@ -1,17 +1,15 @@
-// react-youtube
 import YouTube, { YouTubeProps } from 'react-youtube';
-
+import { GameType } from '@/interface';
 
 interface TrailerProps {
-  videoId: string;
+  game: GameType;
 }
 
-export default function Trailer({ videoId }: TrailerProps) {
+export default function Trailer({ game }: TrailerProps) {
   // onReady
   const onReady: YouTubeProps['onReady'] = (event) => {
     event.target.pauseVideo();
   };
-
   // 비디오 옵션
   const opts: YouTubeProps['opts'] = {
     width: '100%',
@@ -23,12 +21,12 @@ export default function Trailer({ videoId }: TrailerProps) {
 
   return (
     <>
-      <div className="flex justify-center pt-3 mb-5 text-fontDarkGray lg:mb-10">
-        어떤 게임 트레일러
+      <div className="flex justify-center pt-3 mb-5 text-2xl text-fontDarkGray lg:mb-10">
+        {game.title}
       </div>
       <div className="relative flex justify-center w-full box-border pt-[56.25%]">
         <YouTube 
-          videoId={videoId} 
+          videoId={game.trailerUrl} 
           opts={opts} 
           onReady={onReady}
           className="absolute top-0 left-0 w-full h-full"

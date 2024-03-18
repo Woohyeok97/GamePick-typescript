@@ -60,27 +60,27 @@ export default function LikeButton({ game, userLike, session }: LikeButtonProps)
 
   // 분기 ) 로그인 정보가 없을때
   if (!session?.user) return (
-    <div className="text-2xl cursor-pointer">
+    <div className="z-50 m-2 text-2xl cursor-pointer">
       <div className="likeInactive" onClick={() => alert('로그인 이후 이용해주세요.')}>
-        하트
+        관심
       </div>
     </div>
   );
   
   // 분기 ) 좋아요 정보가 없을때
   if (!currentLikeId) return (
-    <div className="text-2xl cursor-pointer">
+    <div className="z-50 m-2 text-2xl cursor-pointer">
       <div className={isPending ? 'likeActive' : 'likeInactive'}onClick={handleClick}>
-        하트
+        관심
       </div>
     </div>
   );
 
   // 분기) 좋아요 정보 있을때
   if (currentLikeId) return (
-    <div className="text-2xl cursor-pointer">
+    <div className="z-50 m-2 text-2xl cursor-pointer">
       <div className={isPending ? 'likeInactive' : 'likeActive'} onClick={handleClick}>
-        하트
+        관심
       </div>
     </div>
   );
