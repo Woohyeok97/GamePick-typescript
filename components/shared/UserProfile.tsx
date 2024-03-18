@@ -19,7 +19,7 @@ export default function UserProfile({ session }: UserProfileProps) {
         </span>
       </div>
       <div>
-      {user?.image && <Image src={user?.image} alt='user-img' width={100} height={100} />}
+      {user?.image && <Image src={user?.image} alt='user-img' width={100} height={100} priority/>}
       </div>
     </div>
   );

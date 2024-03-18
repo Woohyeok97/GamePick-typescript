@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { Noto_Sans_KR } from 'next/font/google'
 // components
 import Navbar from "@/components/shared/Navbar";
-import Overlay from "./Overlay";
+import Overlay from "../components/overlay/OverlayArea";
 import RootProvider from './RootProvider';
 
 // font

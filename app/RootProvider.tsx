@@ -1,7 +1,7 @@
 'use client'
 // providers
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import StoreProvider from './StoreProvider';
+import StoreProvider from '../redux/StoreProvider';
 import { SessionProvider } from 'next-auth/react';
 
 const queryClient = new QueryClient({

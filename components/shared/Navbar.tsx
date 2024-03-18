@@ -13,7 +13,7 @@ export default async function Navbar() {
         </Link>
         {sesstion?.user && (
           <Link href="/upload" className="text-lg font-bold hover:font-black hover:text-fontDarkGray">
-            Game Pick
+            업로드
           </Link>
         )}
       </div>

@@ -19,9 +19,8 @@ export default async function GameItem({ game }: GameItemProps) {
 
   return (
     <div className="flex flex-col justify-between items-center w-full mb-[80px] md:flex-row md:items-start md:gap-12 md:mb-[120px]">
-      {/* <Image src={game?.image} width={300} height={250} alt='n' className="w-full rounded-md md:mr-[5%]"/> */}
       <div className="relative w-full h-[240px] md:w-[240px] mb-4 md:h-[320px] md:basis-[40%]">
-        <Image src={game?.image} fill alt='n' className="gameImage" />
+        <Image src={game?.image} fill alt='n' className="gameImage" priority sizes="100%"/>
       </div>
       <div className="flex flex-col md:basis-[60%]">
         <div className="flex items-center justify-between mb-5">
@@ -31,14 +30,6 @@ export default async function GameItem({ game }: GameItemProps) {
         <div className="mb-5 lg:text-xl md:max-w-full">{game?.description}</div>
         <div className="mb-5 text-fontGray">{game?.releasedAt} 출시</div>
       </div>
-      {/* <div className="flex flex-col">
-        <div className="flex items-center justify-between mb-5">
-          <h1 className="text-2xl font-bold lg:text-4xl">{game?.title}</h1>
-          <LikeButton userLike={userLike} game={game} session={session} />
-        </div>
-        <div className="mb-5 lg:text-xl">{game?.description}</div>
-        <div className="mb-5 text-fontGray">{game?.releasedAt} 출시</div>
-      </div> */}
     </div>
   );
 }
