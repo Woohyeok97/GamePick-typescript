@@ -12,8 +12,8 @@ import useOverlay from "@/hooks/useOverlay";
 import { GameFormType } from "@/interface";
 import { GameFormSchema } from "../zod";
 // remotes
-import { createGame } from "../remotes/axois/gameAPI";
-import { createImage } from "../remotes/axois/imageAPI";
+import { createGame } from "../../remotes/axois/gameAPI";
+import { createImage } from "../../remotes/axois/imageAPI";
 
 
 export default function GameUploadPage() {

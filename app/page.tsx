@@ -6,7 +6,7 @@ import GameItem from '@/components/shared/GameItem';
 import UserProfile from '@/components/shared/UserProfile';
 import GuestProfile from '@/components/shared/GuestProfile';
 // remotes
-import { getGameList } from './remotes/mongodb/servie';
+import { getGameList } from '../remotes/mongodb/servie';
 
 
 export default async function HomePage() {

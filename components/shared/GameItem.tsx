@@ -4,7 +4,7 @@ import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import LikeButton from './LikeButton';
 import Image from 'next/image';
 // remotes
-import { getUserLike } from '@/app/remotes/mongodb/servie';
+import { getUserLike } from '@/remotes/mongodb/servie';
 // type
 import { GameType } from '@/interface';
 

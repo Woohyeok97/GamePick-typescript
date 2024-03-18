@@ -60,6 +60,9 @@
     border
     border-[#001b371a];
   }
+  .textBtn {
+    @apply text-lg font-extrabold cursor-pointer;
+  }
   .likeActive {
     @apply text-fontWarning hover:font-extrabold;
   }

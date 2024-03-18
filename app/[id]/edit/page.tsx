@@ -8,8 +8,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { GameFormSchema } from '@/app/zod';
 import { GameFormType } from '@/interface';
 // remotes
-import { fetchGameById, updateGameById } from '@/app/remotes/axois/gameAPI';
-import { createImage } from '@/app/remotes/axois/imageAPI';
+import { fetchGameById, updateGameById } from '@/remotes/axois/gameAPI';
+import { createImage } from '@/remotes/axois/imageAPI';
 // components
 import MutltiForm from '@/components/form/MultiForm';
 import FullOverlayWrap from '@/components/overlayWraps/FullOverlayWrap';

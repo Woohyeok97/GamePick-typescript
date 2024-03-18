@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 // type
 import { GameType, LikeType } from '@/interface';
 // remotes
-import { createLike, deleteLikeById } from '@/app/remotes/axois/likeAPI';
+import { createLike, deleteLikeById } from '@/remotes/axois/likeAPI';
 
 interface LikeButtonProps {
   game: GameType;

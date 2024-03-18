@@ -4,7 +4,9 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import TrailerImage from "@/components/trailerImage/TrailerImage";
 import LikeButton from "@/components/shared/LikeButton";
 // remotes
-import { getGameById, getUserLike } from "../remotes/mongodb/servie";
+import { getGameById, getUserLike } from "../../remotes/mongodb/servie";
+import Link from "next/link";
+import GameDeleteButton from "@/components/shared/GameDeleteButton";
 
 interface GameDetailPageProps {
   params: { id: string };
@@ -49,6 +51,14 @@ export default async function GamePage({ params }: GameDetailPageProps) {
             </div>
         </div>
       </div>
+      {session?.user && (
+        <div className="flex justify-end gap-5 p-5">
+          <Link href={`/${game._id}/edit`}>
+            <div className="textBtn">편집</div>
+          </Link>
+          <GameDeleteButton gameId={game._id}/>
+        </div>
+      )}
     </div>
   );
 }
