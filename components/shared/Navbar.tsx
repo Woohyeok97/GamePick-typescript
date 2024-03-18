@@ -7,9 +7,15 @@ export default async function Navbar() {
 
   return (
     <nav className="sticky h-[60px] border-b-2">
-      <div className="flex justify-between items-center w-[90%] h-full mx-auto text-lg font-black">
-        <Link href="/">Game Pick</Link>
-        {sesstion?.user && <Link href="/upload">업로드</Link>}
+      <div className="flex justify-between items-center w-[90%] h-full mx-auto">
+        <Link href="/" className="text-lg font-bold hover:font-black hover:text-fontDarkGray">
+          Game Pick
+        </Link>
+        {sesstion?.user && (
+          <Link href="/upload" className="text-lg font-bold hover:font-black hover:text-fontDarkGray">
+            Game Pick
+          </Link>
+        )}
       </div>
     </nav>
   );
