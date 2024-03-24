@@ -15,7 +15,7 @@ export default function MutltiForm({ children, onSubmit, errors }: MutltiFormPro
     <form onSubmit={onSubmit}>
       {validChildren.map(child => {
         if (child.props.label) {
-          return cloneElement(child, { error: errors[child.props.label] });
+          return cloneElement(child, { error: errors[child.props.fieldProps.name] });
         }
         return child;
       })}

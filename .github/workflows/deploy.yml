@@ -5,7 +5,10 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'README.md'
   # 깃허브페이지에서 직접 수동으로 워크플로우 실행
+  
   workflow_dispatch:
 
 # 워크플로우 동안 실행할 '작업들'
