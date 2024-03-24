@@ -37,6 +37,8 @@ jobs:
         run: |
           echo "MONGODB_URL=${{ secrets.MONGODB_URL }}" >> .env
           echo "AWS_S3_BUCKET_NAME=${{ secrets.AWS_S3_BUCKET_NAME }}" >> .env
+          echo "AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY}}" >> .env
+          echo "AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }}" >> .env
 
         # NEXT_PUBLIC 환경변수 env에 추가
       - name: Set public environment variables
