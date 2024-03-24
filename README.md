@@ -3,11 +3,7 @@
 **[서비스 링크](http://game-pick.ap-northeast-2.elasticbeanstalk.com/)**<br/>
 <br/>
 
-### 데스크탑 버전
-<img src="https://github.com/Woohyeok97/Hi-Tel/assets/75671909/9199fdf4-a300-4ccd-b583-c6b983593795" width="80%"/>
-
-### 모바일 버전
-<img src="https://github.com/Woohyeok97/Hi-Tel/assets/75671909/13e48871-8033-4000-8748-2b7889f4a6c1" width="40%"/>
+<img src="https://github.com/Woohyeok97/GamePick-typescript/assets/75671909/f98e1e66-2407-4aa5-9285-19cb05d054b3" width="40%"/>
 
 <br/>
 <br/>
@@ -38,7 +34,7 @@
 - Zod 스키마를 사용하여 런타임 타입체크
 
 <br/>
-<img src="https://github.com/Woohyeok97/Hi-Tel/assets/75671909/61da26d9-3f52-45d3-a9fc-2313ab56d0a4" width="80%"/>
+<img src="https://github.com/Woohyeok97/GamePick-typescript/assets/75671909/1cbc997d-2d7c-4cd1-9c38-ebae77b74a83" width="80%"/>
 
 <br/>
 <br/>
@@ -75,42 +71,47 @@
 
 ## 🔎 프리뷰
 
+### 소셜 로그인
+
+<img src="https://github.com/Woohyeok97/GamePick-typescript/assets/75671909/f43c4dfa-f77d-4c1c-bbf3-955c1bd9ec91" width="50%"/>
+<br/>
+<br/>
+
+<br/>
+
+### 게임 트레일러
+
+<img src="https://github.com/Woohyeok97/GamePick-typescript/assets/75671909/f0fbabd8-3f6f-4319-9a96-afded271e174" width="50%"/>
+<br/>
+<br/>
+
+<br/>
+
 ### 관심게임 등록
 
-<img src="https://github.com/Woohyeok97/Hi-Tel/assets/75671909/a64122b3-ad5b-480f-8dc9-1ea893b31634" width="80%"/><br/>
-
-<!-- 검색 캐싱
-https://github.com/Woohyeok97/Hi-Tel/assets/75671909/bd8af9db-16f7-4656-b84c-b5cfd8c092e6 -->
+<img src="https://github.com/Woohyeok97/GamePick-typescript/assets/75671909/1889244a-ec5f-4650-977b-a4faadf21abb" width="50%"/>
+<br/>
+<br/>
 
 <br/>
 
 ### 게임 데이터 생성 / 삭제
 
-<img src="https://github.com/Woohyeok97/Hi-Tel/assets/75671909/86bd159c-290d-488b-9fa8-37d7ddefb926" width="80%"/><br/>
+<img src="https://github.com/Woohyeok97/GamePick-typescript/assets/75671909/ee5527cf-29ca-471b-9215-8f6adf1646e1" width="50%"/>
+<br/>
+<br/>
 
 <br/>
 
-### 터미널 명령어
+<img src="https://github.com/Woohyeok97/GamePick-typescript/assets/75671909/7996a69d-2602-43a7-a795-3dd574ab14da" width="50%"/>
+<br/>
+<br/>
 
-<img src="https://github.com/Woohyeok97/Hi-Tel/assets/75671909/e7003200-0860-44f6-840b-44bdf4a36eec" width="80%"/><br/>
+<br/>
+<br/>
 
 <br/>
 
-### 알림 페이지
-
-<img src="https://github.com/Woohyeok97/Hi-Tel/assets/75671909/0acdd586-69d7-4b3b-817a-5ad26a8ae847" width="80%"/><br/>
-
-<br/>
-
-### 언어설정
-
-<img src="https://github.com/Woohyeok97/Hi-Tel/assets/75671909/a55892eb-2b1b-42c7-81c8-4b33f9c5ad89" width="80%"/><br/>
-
-<br/>
-
-### 게시글 작성
-
-<img src="https://github.com/Woohyeok97/Hi-Tel/assets/75671909/62dd5099-16f2-48c4-a392-754398c73b48" width="40%"/><br/>
 
 <br/>
 <br/>
